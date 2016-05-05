@@ -1,20 +1,6 @@
 import { Template } from 'meteor/templating';
 import './surf.html';
 
-Template.datepick.onRendered(function() {
-    this.$('.datetimepicker').datetimepicker({
-    	defaultDate:moment(),
-    	format:'L'
-    });
-});
-
-Template.timepick.onRendered(function() {
-    this.$('.datetimepicker').datetimepicker({
-    	defaultDate:moment().add(1,'hour').startOf('hour'),
-    	format: 'LT'
-    });
-});
-
 var MAP_ZOOM = 20;
 
 Meteor.startup(function() {  
@@ -30,12 +16,13 @@ Template.map.helpers({
     var latLng = Geolocation.latLng();
     // Initialize the map once we have the latLng.
     if (GoogleMaps.loaded() && latLng) {
+      document.getElementById("location").innerHTML = [latLng.lat]; 
       return {
         center: new google.maps.LatLng(latLng.lat, latLng.lng),
         zoom: MAP_ZOOM
       };
     }
-    document.getElementById("location").innerHTML = [String(Geolocation.latLng(latLng.lat))]; 
+    
   }
 });
 
@@ -53,12 +40,14 @@ Template.map.onCreated(function() {
 Template.placesa.helpers({
 	jimm: function(){
     var latLng = Geolocation.latLng();
-    console.log(latLng)
-    return lagLng
+    if (GoogleMaps.loaded() && latLng) {
+      console.log(latLng);
+    return latLng
     // var a = {
     //   "lat": 123,
     //   "lng": 312
     // }
     }
+  }
 		
 });

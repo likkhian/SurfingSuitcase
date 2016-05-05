@@ -44,47 +44,16 @@
 	        </select> 
         </div>
       </div>
-      <div class="form-group">
-        <label for="locationpick" class="col-xs-4">Near</label>
-        <input class="col-xs-8" type="text" id="locationpick" placeholder="Here">
-      </div>
-      <div class="form-group">
-        <label for="datepick" class="col-xs-4">On</label>
-        {{> datepick}}
-        <!-- <input class="col-xs-8" type="date" id="datepick"> -->
-      </div>      
-      <div class="form-group">
-        <label for="timepick" class="col-xs-4">At</label>
-        {{> timepick}}
-        <!-- <input class="col-xs-8" type="time" id="timepick"> -->
-      </div>  
-      <div class="form-group">
-        <label for="lengthpick" class="col-xs-4">For</label>
-        <input class="col-xs-6" type="number" id="lengthpick">
-        <label class="col-xs-2">Hours</label>
-      </div>  
+      
+      {{> map}}
+
        <button type="submit" class="btn btn-success btn-lg btn-block">Start Surfing</button>
        {{> placesa}}
-       {{> map}}
        
     </form>
 
   </div>
 </div>
-</template>
-
-<template name="datepick">
-  <div class="input-group datetimepicker">
-    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-    <input class="set-due-date form-control col-xs-8" type="text"/>
-  </div>
-</template>
-
-<template name="timepick">
-  <div class="input-group datetimepicker">
-    <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-    <input class="set-due-date form-control col-xs-8" type="text"/>
-  </div>
 </template>
 
 <template name="map">  
@@ -100,8 +69,8 @@
 
 <template name="placesa">
   <div class="calleded">
-    <p>"{{latLng.lat}}"</p>
-    <p>"{{latLng.lng}}"</p>
+    <p>"{{jimm.lat}}"</p>
+    <p>"{{jimm.lng}}"</p>
     <p id="testconvert"></p>
   </div>
 </template>
