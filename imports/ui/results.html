@@ -1,0 +1,31 @@
+<template name="results">
+<!--navigation bar starts -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+   <div class="container-fluid">
+    <div class="navbar-header">
+      <button class="nav">
+        <a href="./">Back</a>
+      </button>
+      <a class="navbar-brand" href="./">Surfing Suitcase</a>
+    </div>
+
+  </div> 
+</nav>
+<!-- navigation bar ends -->	
+	<div class="container-fluid">
+	<header>Here are your results</header>
+	{{#each SSreturns}}
+		{{>SSreturn}}
+	{{/each}}
+	
+	</div>	
+</template>
+
+<template name="SSreturn">
+	<div class="row">
+		<div id="resultbox">
+			{{Text}}
+		</div>
+		
+	</div>
+</template>

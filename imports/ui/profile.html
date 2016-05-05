@@ -1,0 +1,53 @@
+<template name="profile">
+
+ <!--navigation bar starts -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Surfing Suitcase</a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="./">Surf</a></li>
+        <li class="active"><a href="#">Profile</a></li>
+        <li><a href="./itinerary">Itinerary</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+<!-- navigation bar ends -->
+
+<div class="container">
+  <div class="starter-template">
+    <h1 id="title">Profile</h1>
+    <div class="row profpic">
+  		<picture>
+  			<img src="https://scontent-sin1-1.xx.fbcdn.net/hphotos-frc1/v/t1.0-9/10385485_10152530849760777_8100744360037756202_n.jpg?oh=762399f7432c2d00818d4b637f19afa6&oe=57B8AB1C" alt="..." class="img-circle img-responsive center-block">
+	    </picture>
+    </div>
+    <div>
+      <p><h2>hours left</h2>{{>balance}}</p>
+      <p><h2>next recharge</h2></p>
+    </div>
+    <div>
+      <p><h3><a href="#">View Subscription</a></h3></p>
+      <p><h3><a href="./">Book New Space</a></h3></p>
+      <p><h3><a href="./itinerary">View Itinerary</a></h3></p>
+      <p><h3><a href="#">View History</a></h3></p>
+      <p><h3><a href="#">Edit Profile</a></h3></p>
+      <p><a href="/signin">Sign out</a></p>
+    </div>
+    
+  </div>
+</div><!-- /.container -->
+</template>
+
+<template name="balance">
+  {{timeleft}}
+</template>

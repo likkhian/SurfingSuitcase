@@ -1,0 +1,107 @@
+<template name="surf">
+
+ <!--navigation bar starts -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Surfing Suitcase</a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="./">Surf</a></li>
+        <li><a href="./profile">Profile</a></li>
+        <li><a href="./itinerary">Itinerary</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+<!-- navigation bar ends -->
+
+
+<div class="starter-template">
+    <header><h1>Surfing Suitcase</h1>
+      <h4>Surfing Suitcase finds and reserves nearby spaces for you</h4>
+    </header>
+  <div class="container-fluid">
+
+    <form class="form-horizontal"> 
+      <div class="form-group">
+        <label for="desire" class="col-xs-4">I want to</label> 
+        <div class="input-group col-xs-8">
+        	<span class="input-group-addon">
+        		<span class="glyphicon glyphicon-sunglasses"></span>
+        	</span>
+	        <select class="col-xs-12" id="desire">
+	          <option value="1">Work</option>
+	          <option value="2">Get Inspired</option>
+	          <option value="3">Meet</option> 
+	        </select> 
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="locationpick" class="col-xs-4">Near</label>
+        <input class="col-xs-8" type="text" id="locationpick" placeholder="Here">
+      </div>
+      <div class="form-group">
+        <label for="datepick" class="col-xs-4">On</label>
+        {{> datepick}}
+        <!-- <input class="col-xs-8" type="date" id="datepick"> -->
+      </div>      
+      <div class="form-group">
+        <label for="timepick" class="col-xs-4">At</label>
+        {{> timepick}}
+        <!-- <input class="col-xs-8" type="time" id="timepick"> -->
+      </div>  
+      <div class="form-group">
+        <label for="lengthpick" class="col-xs-4">For</label>
+        <input class="col-xs-6" type="number" id="lengthpick">
+        <label class="col-xs-2">Hours</label>
+      </div>  
+       <button type="submit" class="btn btn-success btn-lg btn-block">Start Surfing</button>
+       {{> placesa}}
+       {{> map}}
+       
+    </form>
+
+  </div>
+</div>
+</template>
+
+<template name="datepick">
+  <div class="input-group datetimepicker">
+    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+    <input class="set-due-date form-control col-xs-8" type="text"/>
+  </div>
+</template>
+
+<template name="timepick">
+  <div class="input-group datetimepicker">
+    <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+    <input class="set-due-date form-control col-xs-8" type="text"/>
+  </div>
+</template>
+
+<template name="map">  
+  <div class="map-container">
+    {{#unless geolocationError}}
+      {{> googleMap name="map" options=mapOptions}}
+    {{else}}
+      Geolocation failed: {{geolocationError}}
+    {{/unless}}    
+  </div>
+  <p id="location"></p>
+</template>  
+
+<template name="placesa">
+  <div class="calleded">
+    <p>"{{latLng.lat}}"</p>
+    <p>"{{latLng.lng}}"</p>
+    <p id="testconvert"></p>
+  </div>
+</template>
