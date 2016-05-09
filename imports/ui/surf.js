@@ -4,7 +4,10 @@ import './surf.html';
 var MAP_ZOOM = 20;
 
 Meteor.startup(function() {  
-  GoogleMaps.load();
+  GoogleMaps.load({
+    key:'AIzaSyCB9qUBo50rpFgUHxxbX-ASY951y8mRJOg',
+    libraries: 'places'  // also accepts an array if you need more than one
+  });
 });
 
 Template.map.helpers({  
@@ -16,7 +19,6 @@ Template.map.helpers({
     var latLng = Geolocation.latLng();
     // Initialize the map once we have the latLng.
     if (GoogleMaps.loaded() && latLng) {
-      document.getElementById("location").innerHTML = [latLng.lat]; 
       return {
         center: new google.maps.LatLng(latLng.lat, latLng.lng),
         zoom: MAP_ZOOM
@@ -43,11 +45,71 @@ Template.placesa.helpers({
     if (GoogleMaps.loaded() && latLng) {
       console.log(latLng);
     return latLng
-    // var a = {
-    //   "lat": 123,
-    //   "lng": 312
-    // }
     }
   }
 		
+});
+
+// Template.findplaces.helpers({
+//   mapOptions: function() {
+//     var latLng = Geolocation.latLng();
+//     // Initialize the map once we have the latLng.
+//     if (GoogleMaps.loaded() && latLng) {
+//       return {
+//         center: new google.maps.LatLng(latLng.lat, latLng.lng),
+//         zoom: MAP_ZOOM
+//       };
+//     }   
+//   }
+// })
+// Template.findplaces.onCreated(function() {  
+//   GoogleMaps.ready('findplaces', function(map) {
+//     var latLng = Geolocation.latLng();
+
+//     var marker = new google.maps.Marker({
+//       position: new google.maps.LatLng(latLng.lat, latLng.lng),
+//       map: map.instance,
+//       draggable: true
+//     });
+//   });
+// });
+
+Template.findplaces.onRendered(function() {
+  this.autorun(function () {
+    if (GoogleMaps.loaded()) {
+      var latLng = Geolocation.latLng();
+      Session.set('selectedLocation',latLng);
+      var mappy = $("input").geocomplete({
+        map: ".location-container",
+        markerOptions: {  
+          draggable: false
+        },
+        mapOptions:{
+          zoom:15,
+          center: latLng,
+          scrollwheel: true
+        },
+        // details: "#my_form"
+
+      })
+      .bind("geocode:result",function(event,result){
+        console.log(result);
+        Session.set('selectedLocation',result.geometry.location);
+      });
+      console.log(mappy);
+    }
+  });
+});
+
+Template.surf.events({
+  'submit .new-search'(event){
+    event.preventDefault();
+    console.log(event);
+    var desireChoice=event.target.desire.value;
+    var locationChoice=Session.get('selectedLocation');
+    console.log(desireChoice);
+    console.log(locationChoice);  
+    
+    Router.go('/results/'+ desireChoice+ "&lat="+locationChoice.lat + "&lng"+locationChoice.lng);
+  }
 });

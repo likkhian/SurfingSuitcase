@@ -26,11 +26,11 @@
 
 <div class="starter-template">
     <header><h1>Surfing Suitcase</h1>
-      <h4>Surfing Suitcase finds and reserves nearby spaces for you</h4>
+      <h4>Surfing Suitcase finds spaces nearby that fits your needs</h4>
     </header>
   <div class="container-fluid">
 
-    <form class="form-horizontal"> 
+    <form class="form-horizontal new-search"> 
       <div class="form-group">
         <label for="desire" class="col-xs-4">I want to</label> 
         <div class="input-group col-xs-8">
@@ -45,10 +45,12 @@
         </div>
       </div>
       
-      {{> map}}
+      {{> findplaces}}
 
        <button type="submit" class="btn btn-success btn-lg btn-block">Start Surfing</button>
        {{> placesa}}
+       {{> map}}
+
        
     </form>
 
@@ -73,4 +75,16 @@
     <p>"{{jimm.lng}}"</p>
     <p id="testconvert"></p>
   </div>
+</template>
+
+<template name="findplaces">
+    <div class="form-group">
+        <label for="locationpick" class="col-xs-4">Near</label>
+        <input class="col-xs-8" type="text" id="locationpick" placeholder="Here">
+    </div>
+      <div class="location-container">
+      
+      </div>
+    
+    <!-- {{> googleMap name="findplaces" options=mapOptions}} -->
 </template>

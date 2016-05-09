@@ -25,3 +25,7 @@ momentjs:moment
 iron:router
 dburles:google-maps
 mdg:geolocation
+jeremy:geocomplete
+session
+accounts-ui
+accounts-password

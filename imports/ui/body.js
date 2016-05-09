@@ -6,7 +6,7 @@ import './itinerary.html';
 import './register.html';
 import './signin.js'
 import './results.js'
- 
+import './manager.js'
 /*Template.body.helpers({
   tasks: [
     { text: 'This is task 1' },
@@ -24,4 +24,11 @@ Router.route('/register');
 Router.route('/profile');
 Router.route('/itinerary');
 Router.route('/signin');
-Router.route('/results');
+Router.route('/manager')
+Router.route('/results/:id',{
+	template:'results',
+	data: function(){
+		var params=this.params;
+		console.log(params.id);
+	}
+});
