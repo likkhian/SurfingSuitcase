@@ -93,8 +93,12 @@ Template.findplaces.onRendered(function() {
 
       })
       .bind("geocode:result",function(event,result){
-        console.log(result);
-        Session.set('selectedLocation',result.geometry.location);
+        console.log(result.geometry.location.lat());
+        console.log(result.geometry.location.lng());
+        var setLatLng = new Object();
+        setLatLng.lat=result.geometry.location.lat();
+        setLatLng.lng=result.geometry.location.lng();
+        Session.set('selectedLocation',setLatLng);
       });
       console.log(mappy);
     }
