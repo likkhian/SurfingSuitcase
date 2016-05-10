@@ -21,7 +21,7 @@ select{
 	text-align: center;
 }
 #resultbox{
-	height:150px;
+	padding-bottom: 0px;
 }
 .map-container {
   width: 100%;

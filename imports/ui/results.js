@@ -11,4 +11,7 @@ Template.results.helpers({
   SSreturns(){
 		return Query.find({});
 	},
+	what:function(){
+		console.log(this)
+	}//can delete later, no result.
 });

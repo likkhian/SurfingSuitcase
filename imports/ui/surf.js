@@ -6,7 +6,7 @@ var MAP_ZOOM = 20;
 Meteor.startup(function() {  
   GoogleMaps.load({
     key:'AIzaSyCB9qUBo50rpFgUHxxbX-ASY951y8mRJOg',
-    libraries: 'places'  // also accepts an array if you need more than one
+    libraries: 'places, geometry'  // also accepts an array if you need more than one
   });
 });
 
@@ -74,10 +74,11 @@ Template.placesa.helpers({
 //   });
 // });
 
-Template.findplaces.onRendered(function() {
+Template.findplaces.onCreated(function() {
   this.autorun(function () {
-    if (GoogleMaps.loaded()) {
-      var latLng = Geolocation.latLng();
+    var latLng = Geolocation.latLng();
+    if (GoogleMaps.loaded() && latLng) {
+      
       Session.set('selectedLocation',latLng);
       var mappy = $("input").geocomplete({
         map: ".location-container",
@@ -114,6 +115,10 @@ Template.surf.events({
     console.log(desireChoice);
     console.log(locationChoice);  
     
-    Router.go('/results/'+ desireChoice+ "&lat="+locationChoice.lat + "&lng"+locationChoice.lng);
+    Router.go('/results/'+ desireChoice+ "&lat="+locationChoice.lat + "&lng"+locationChoice.lng,
+      {data:function(){
+        return locationChoice;
+      }
+    });
   }
 });
