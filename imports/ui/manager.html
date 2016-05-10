@@ -15,6 +15,13 @@
         	<input type="text" name="longitude" placeholder="Enter lon">
         	<input type="url" name="cidLink" placeholder="Paste google cid link">
         	<input type="url" name="link2pic" placeholder="Paste link to picture">
+        	<select name="wifi">
+	          <option value="1">poor</option>
+	          <option value="2">good</option>
+	          <option value="3">excellent</option> 
+	        </select> 
+	        <input type="text" name="powerPoint" placeholder="Enter number of pp">
+        	<input type="text" name="drinkPrice" placeholder="Enter drink price">
         	<input class="btn btn-default" type="submit" value="Submit">
     	</form>
 		{{#each Spacelists}}
@@ -27,14 +34,21 @@
 	<div class="row">
 		<div>
 			<div class="col-xs-1"><button class="delete">&times;</button></div>
-			<div class="col-xs-1">{{spaceCat}}</div>
-			<div class="col-xs-1">{{text}}</div>
+			<div class="col-xs-2">{{spaceCat}}</div>
+			<div class="col-xs-2">{{text}}</div>
 			<div class="col-xs-2">{{address}}</div>
 			<div class="col-xs-1">{{spaceLat}}</div>
 			<div class="col-xs-1">{{spaceLon}}</div>
-			<div class="col-xs-2">{{spaceCid}}</div>
-			<div class="col-xs-3">{{picture}}</div>
+			<div class="col-xs-3">{{spaceCid}}</div>
+			
 		</div>
-		
+	</div>
+	<div class="row">
+		<div>
+			<div class="col-xs-3">{{picture}}</div>
+			<div class="col-xs-3">{{spaceWifi}}</div>
+			<div class="col-xs-3">{{spacePp}}</div>
+			<div class="col-xs-3">{{spaceDp}}</div>
+		</div>	
 	</div>
 </template>

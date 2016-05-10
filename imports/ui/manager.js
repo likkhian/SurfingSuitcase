@@ -16,6 +16,9 @@ Template.manager.events({
 		const spaceLon=target.longitude.value;
 		const picture=target.link2pic.value;
 		const spaceCid=target.cidLink.value;
+		const spaceWifi=target.wifi.value;
+		const spacePp=target.powerPoint.value;
+		const spaceDp=target.drinkPrice.value;
 		console.log(target)
 
 		// Insert a task into the collection
@@ -27,6 +30,9 @@ Template.manager.events({
 	      spaceLon,
 	      spaceCid,
 	      picture,
+	      spaceWifi,
+	      spacePp,
+	      spaceDp,
 	      createdAt: new Date(), // current time
 	    });
 
@@ -37,6 +43,8 @@ Template.manager.events({
 	    target.longitude.value='';
 	    target.link2pic.value='';
 	    target.cidLink.value='';
+	    target.powerPoint.value='';
+	    target.drinkPrice.value='';
 	},
 	'click .delete'(){
 		Query.remove(this._id);
