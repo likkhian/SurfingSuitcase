@@ -1,6 +1,8 @@
 import { Template } from 'meteor/templating';
-import {Query} from '../api/query.js';
+import { Query } from '../api/query.js';
 import './results.html';
+import { extract } from '../api/search.js';
+import { ToServe } from '../api/search.js';
 
 Template.results.helpers({
   // SSreturns: [
@@ -9,9 +11,9 @@ Template.results.helpers({
   //   { Text: 'params' },
   // ],
   SSreturns(){
-		return Query.find({});
+    Meteor.call('extract');
+    return ToServe.find({});
+		//return Query.find({});
 	},
-	what:function(){
-		console.log(this)
-	}//can delete later, no result.
+
 });

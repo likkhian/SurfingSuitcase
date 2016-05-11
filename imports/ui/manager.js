@@ -1,5 +1,6 @@
 import { Template } from 'meteor/templating';
 import {Query} from '../api/query.js';
+import { Meteor } from 'meteor/meteor';
 import './manager.html';
 
 Template.manager.events({
@@ -22,19 +23,21 @@ Template.manager.events({
 		console.log(target)
 
 		// Insert a task into the collection
-	    Query.insert({
-	      spaceCat,
-	      text,
-	      address,
-	      spaceLat,
-	      spaceLon,
-	      spaceCid,
-	      picture,
-	      spaceWifi,
-	      spacePp,
-	      spaceDp,
-	      createdAt: new Date(), // current time
-	    });
+	    // Query.insert({
+	    //   spaceCat,
+	    //   text,
+	    //   address,
+	    //   spaceLat,
+	    //   spaceLon,
+	    //   spaceCid,
+	    //   picture,
+	    //   spaceWifi,
+	    //   spacePp,
+	    //   spaceDp,
+	    //   createdAt: new Date(), // current time
+	    // });
+	    //make api call
+	    Meteor.call('query.insert',spaceCat,text,address,spaceLat,spaceLon,picture,spaceCid,spaceWifi,spacePp,spaceDp)
 
 	    //clear form
 	    target.spaceName.value='';
@@ -47,14 +50,16 @@ Template.manager.events({
 	    target.drinkPrice.value='';
 	},
 	'click .delete'(){
-		Query.remove(this._id);
+		//Query.remove(this._id);
+		Meteor.call('query.remove',this._id);
 	},
 })
 
 Template.manager.helpers({
-  	Spacelists(){
+  	spacelists: function() {
   		console.log(Meteor.user().username);
-		return Query.find({});
+		return Query.find({}); //this is still not using methods.
+		//return Meteor.call('query.list')
 	},
 	//only admin can edit
 	admincheck:function(){

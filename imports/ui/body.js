@@ -2,7 +2,7 @@ import { Template } from 'meteor/templating';
 import './surf.js'
 import './body.html';
 import './profile.js';
-import './itinerary.html';
+import './aboutus.html';
 import './register.html';
 import './signin.js'
 import './results.js'
@@ -22,7 +22,7 @@ Router.route('/',{
 });
 Router.route('/register');
 Router.route('/profile');
-Router.route('/itinerary');
+Router.route('/aboutus');
 Router.route('/signin');
 Router.route('/manager')
 Router.route('/results/:id',{

@@ -24,13 +24,13 @@
         	<input type="text" name="drinkPrice" placeholder="Enter drink price">
         	<input class="btn btn-default" type="submit" value="Submit">
     	</form>
-		{{#each Spacelists}}
-			{{>Spacelist}}
+		{{#each spacelists}}
+			{{>spacelist}}
 		{{/each}}
 		{{/if}}
     </div>
 </template>
-<template name="Spacelist">
+<template name="spacelist">
 	<div class="row">
 		<div>
 			<div class="col-xs-1"><button class="delete">&times;</button></div>

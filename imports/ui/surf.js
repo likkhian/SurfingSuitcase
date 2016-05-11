@@ -1,5 +1,6 @@
 import { Template } from 'meteor/templating';
 import './surf.html';
+import {Search} from '../api/search.js';
 
 var MAP_ZOOM = 20;
 
@@ -81,7 +82,7 @@ Template.findplaces.onCreated(function() {
       
       Session.set('selectedLocation',latLng);
       var mappy = $("input").geocomplete({
-        map: ".location-container",
+        //map: ".location-container",
         markerOptions: {  
           draggable: false
         },
@@ -115,6 +116,8 @@ Template.surf.events({
     console.log(desireChoice);
     console.log(locationChoice);  
     
+    Meteor.call('search', locationChoice, desireChoice)
+
     Router.go('/results/'+ desireChoice+ "&lat="+locationChoice.lat + "&lng"+locationChoice.lng,
       {data:function(){
         return locationChoice;
