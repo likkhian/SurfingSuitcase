@@ -23,7 +23,7 @@
 <!-- navigation bar ends -->
 
 	<div class="container-fluid container-limiter">
-	<header>Here are the 5 nearest places!</header>
+	<header><b>Here are the 5 nearest places!</b></header>
 	{{#each SSreturns}}
 		{{>SSreturn}}
 	{{/each}}
@@ -34,11 +34,11 @@
 <template name="SSreturn">
 	<div class="row">
 		<div id="resultbox">  
-      <img src={{picture}} alt="storefront" width="100%" height="200px">
-			<p><b>{{text}}</b> is {{theDist}}m away.
+      <a href={{spaceCid}}><img src={{picture}} alt="storefront" width="100%" height="200px"></a>
+			<p><b>{{text}}</b> ({{theDist}}m away)
   			<br><a href={{spaceCid}}> {{address}}</a>
-        <br><i class="fa fa-wifi" aria-hidden="true"></i>:{{spaceWifi}} 
-        <i class="fa fa-plug" aria-hidden="true"></i>:{{spacePp}} 
+        <br><i class="fa fa-wifi" aria-hidden="true"></i>:{{spaceWifi}} &nbsp;&nbsp;
+        <i class="fa fa-plug" aria-hidden="true"></i>:{{spacePp}} &nbsp;&nbsp;
         <i class="fa fa-coffee" aria-hidden="true"></i>:{{spaceDp}}
       </p>
 		</div>
