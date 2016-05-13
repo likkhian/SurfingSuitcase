@@ -16,9 +16,10 @@
         	<input type="url" name="cidLink" placeholder="Paste google cid link">
         	<input type="url" name="link2pic" placeholder="Paste link to picture">
         	<select name="wifi">
-	          <option value="1">poor</option>
-	          <option value="2">good</option>
-	          <option value="3">excellent</option> 
+        	  <option value="0">no wifi</option>
+	          <option value="1">wifi &lt; 5mbps</option>
+	          <option value="2">5mbps &gt; wifi &lt; 10mbps</option>
+	          <option value="3">wifi &gt; 10mbps</option> 
 	        </select> 
 	        <input type="text" name="powerPoint" placeholder="Enter number of pp">
         	<input type="text" name="drinkPrice" placeholder="Enter drink price">
@@ -32,23 +33,18 @@
 </template>
 <template name="spacelist">
 	<div class="row">
-		<div>
-			<div class="col-xs-1"><button class="delete">&times;</button></div>
-			<div class="col-xs-2">{{spaceCat}}</div>
-			<div class="col-xs-2">{{text}}</div>
-			<div class="col-xs-2">{{address}}</div>
-			<div class="col-xs-1">{{spaceLat}}</div>
-			<div class="col-xs-1">{{spaceLon}}</div>
-			<div class="col-xs-3">{{spaceCid}}</div>
-			
-		</div>
+		<div class="col-xs-1"><button class="delete">&times;</button></div>
+		<div class="col-xs-2">space category: {{spaceCat}}</div>
+		<div class="col-xs-3">{{text}}</div>
+		<div class="col-xs-2">{{address}}</div>
+		<div class="col-xs-2">{{spaceLat}}</div>
+		<div class="col-xs-2">{{spaceLon}}</div>
 	</div>
-	<div class="row">
-		<div>
-			<div class="col-xs-3">{{picture}}</div>
-			<div class="col-xs-3">{{spaceWifi}}</div>
-			<div class="col-xs-3">{{spacePp}}</div>
-			<div class="col-xs-3">{{spaceDp}}</div>
-		</div>	
+	<div class="row row-2">
+		<div class="col-xs-3 break">{{spaceCid}}</div>
+		<div class="col-xs-3 break">{{picture}}</div>
+		<div class="col-xs-2">wifi quality: {{spaceWifi}}</div>
+		<div class="col-xs-2">number of power points: {{spacePp}}</div>
+		<div class="col-xs-2">drink price: {{spaceDp}}</div>	
 	</div>
 </template>

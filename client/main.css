@@ -38,3 +38,10 @@ select{
   padding-top: 5px;
   padding-bottom: 5px;
 }
+.row-2{
+	border-bottom:solid;
+	border-width: 1px;
+}
+.break{ 
+	word-wrap: break-word;
+}
