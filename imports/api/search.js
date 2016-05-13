@@ -67,6 +67,17 @@ Meteor.methods({
 		    var spaceCid=currentAns.spaceCid;
 		    var picture=currentAns.picture;
 		    var spaceWifi=currentAns.spaceWifi;
+		    if(spaceWifi==='0'){
+			      spaceWifi="None";
+			}else if(spaceWifi==='1'){
+			      spaceWifi="Poor";
+			}else if(spaceWifi==='2'){
+			      spaceWifi="Good";
+			}else if(spaceWifi==='3'){
+			      spaceWifi="Excellent";
+			}else{
+			      spaceWifi="No Info";
+			};
 		    var spacePp=currentAns.spacePp;
 		    var spaceDp=currentAns.spaceDp;
 	 		theDist=entry.placeDist;

@@ -48,3 +48,6 @@ select{
 .container-limiter {
 	max-width: 600px;
 }
+#hypeman{
+	font-size: large;
+}
