@@ -70,7 +70,7 @@ Meteor.methods({
 		    if(spaceWifi==='0'){
 			      spaceWifi="None";
 			}else if(spaceWifi==='1'){
-			      spaceWifi="Poor";
+			      spaceWifi="Basic";
 			}else if(spaceWifi==='2'){
 			      spaceWifi="Good";
 			}else if(spaceWifi==='3'){
