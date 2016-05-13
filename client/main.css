@@ -45,3 +45,6 @@ select{
 .break{ 
 	word-wrap: break-word;
 }
+.container-limiter {
+	max-width: 600px;
+}

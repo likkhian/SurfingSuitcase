@@ -12,7 +12,7 @@ Template.results.helpers({
   // ],
   SSreturns(){
     Meteor.call('extract');
-    return ToServe.find({});
+    return ToServe.find({},{limit:5});
 		//return Query.find({});
 	},
 

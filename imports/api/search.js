@@ -57,7 +57,7 @@ Meteor.methods({
 	 //   		console.log(entry._id,entry.placeId,entry.placeDist);
 	 //   	});
 	 	resultCurser.forEach(function(entry){
-	 		console.log(Query.findOne({_id:entry.placeId}).text);
+	 		console.log(Query.findOne({_id:entry.placeId}).spaceWifi);
 	 		var currentAns = Query.findOne({_id:entry.placeId});
 	 		var spaceCat=currentAns.spaceCat;
 	 		var text=currentAns.text;
@@ -88,6 +88,11 @@ Meteor.methods({
 
 });
 
+// //publish results to serve
+// Meteor.publish('ToServe',function(limit){
+// 	var dl=limit || 10;
+// 	return ToServe.find({},{limit:dl});
+// });
 
 function distCalc(locationChoice,spaceLat,spaceLon){
 	var R = 6378137; // Earth’s mean radius in meter
@@ -102,3 +107,4 @@ function distCalc(locationChoice,spaceLat,spaceLon){
 var rad = function(x) {
   return x * Math.PI / 180;
 };
+

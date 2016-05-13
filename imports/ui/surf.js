@@ -75,7 +75,7 @@ Template.placesa.helpers({
 //   });
 // });
 
-Template.findplaces.onCreated(function() {
+Template.findplaces.onRendered(function() {
   this.autorun(function () {
     var latLng = Geolocation.latLng();
     if (GoogleMaps.loaded() && latLng) {
@@ -83,14 +83,14 @@ Template.findplaces.onCreated(function() {
       Session.set('selectedLocation',latLng);
       var mappy = $("input").geocomplete({
         //map: ".location-container",
-        markerOptions: {  
-          draggable: false
-        },
-        mapOptions:{
-          zoom:15,
-          center: latLng,
-          scrollwheel: true
-        },
+        // markerOptions: {  
+        //   draggable: false
+        // },
+        // mapOptions:{
+        //   zoom:15,
+        //   center: latLng,
+        //   scrollwheel: true
+        // },
         // details: "#my_form"
 
       })
