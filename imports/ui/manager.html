@@ -29,6 +29,9 @@
 		{{#each spacelists}}
 			{{>spacelist}}
 		{{/each}}
+		{{#each collectedEmails}}
+			{{>collectedEmail}}
+		{{/each}}
 		{{/if}}
     </div>
 </template>
@@ -51,4 +54,7 @@
 		<div class="col-xs-1"><button class="delete">&times;</button></div>
 			
 	</div>
+</template>
+<template name="collectedEmail">
+	<div><p>{{emailAdd}} {{createdAt}}</p></div>
 </template>

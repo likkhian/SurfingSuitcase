@@ -24,7 +24,21 @@
 <div class="container">
 <div class="starter-template">
 	<header><h1>About SurfingSuitcase</h1></header>
-	<p>Surfing Suitcase carefully curates locations everywhere to help you find the most conducive locations to get your work done. Please <a href="mailto:hello@surfingsuitcase.com">contact us</a> to share your experience using the app.</p>
+	<p>Surfing Suitcase carefully curates locations everywhere to help you find the most conducive spaces to get your work done. Please <a href="mailto:hello@surfingsuitcase.com">contact us</a> to share your experience using the app, and to recommend new places.</p>
+  {{>emailCapture}}
 </div>
 </div>
+</template>
+
+<template name="emailCapture">
+  <div class="conatiner-fluid">
+    <form class="emailEntry">
+      <div class="form-group">
+        <label for="inputEmail">If you wish to get updates from us on new locations and services, please enter your email</label>
+        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+      <span id="thankYouMsg"></span>
+    </form>
+  </div>
 </template>

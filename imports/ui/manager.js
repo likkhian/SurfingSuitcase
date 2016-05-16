@@ -2,6 +2,7 @@ import { Template } from 'meteor/templating';
 import {Query} from '../api/query.js';
 import { Meteor } from 'meteor/meteor';
 import './manager.html';
+import { Emails } from '../api/email.js';
 
 Template.manager.events({
 	'submit .new-space'(event){
@@ -91,5 +92,8 @@ Template.manager.helpers({
 	//only admin can edit
 	admincheck:function(){
 		return Meteor.user().username==="SSadmin";
+	},
+	collectedEmails: function() {
+		return Emails.find({})
 	},
 });

@@ -2,7 +2,7 @@ import { Template } from 'meteor/templating';
 import './surf.js'
 import './body.html';
 import './profile.js';
-import './aboutus.html';
+import './aboutus.js';
 import './register.html';
 import './signin.js'
 import './results.js'
