@@ -19,6 +19,8 @@ Template.manager.events({
 		const spaceWifi=target.wifi.value;
 		const spacePp=target.powerPoint.value;
 		const spaceDp=target.drinkPrice.value;
+		var entry2Update = Session.get('entry2Insert');
+		console.log(entry2Update);
 
 		// Insert a task into the collection
 	    // Query.insert({
@@ -35,7 +37,7 @@ Template.manager.events({
 	    //   createdAt: new Date(), // current time
 	    // });
 	    //make api call
-	    Meteor.call('query.insert',spaceCat,text,address,spaceLat,spaceLon,picture,spaceCid,spaceWifi,spacePp,spaceDp)
+	    Meteor.call('query.upsert',entry2Update,spaceCat,text,address,spaceLat,spaceLon,picture,spaceCid,spaceWifi,spacePp,spaceDp)
 
 	    //clear form
 	    target.spaceName.value='';
@@ -46,6 +48,8 @@ Template.manager.events({
 	    target.cidLink.value='';
 	    target.powerPoint.value='';
 	    target.drinkPrice.value='';
+	    Session.set('entry2Insert','');
+	    document.getElementById("activeId").innerHTML = '';
 	},
 	'click .delete'(){
 		//Query.remove(this._id);
@@ -53,22 +57,27 @@ Template.manager.events({
 	},
 	'click .edit'(){
 		//make edit
-		const entry2Update=this._id
+		const entry2Insert=this._id
 		const entryCurser = Query.find(this._id)
 		const entry = entryCurser.fetch()
-		console.log(entry[0].text)
+		console.log(entry[0]._id)
 		const trgt=document.getElementsByClassName("new-space")
-		console.log(trgt)
+		console.log(trgt[0])
 		//fill form
+		trgt[0][0].value=entry[0].spaceCat;
 	    trgt[0].spaceName.value=entry[0].text;
 	    trgt[0].address.value=entry[0].address;
 	    trgt[0].lattitude.value=entry[0].spaceLat;
 	    trgt[0].longitude.value=entry[0].spaceLon;
 	    trgt[0].link2pic.value=entry[0].picture;
 	    trgt[0].cidLink.value=entry[0].spaceCid;
+	    trgt[0][7].value=entry[0].spaceWifi;
 	    trgt[0].powerPoint.value=entry[0].spacePp;
 	    trgt[0].drinkPrice.value=entry[0].spaceDp;
-	    Session.set('entry2Update',entry2Update);
+	    var myId = entry[0]._id;
+	    console.log(document.getElementById("activeId"))
+    	document.getElementById("activeId").innerHTML = myId;
+	    Session.set('entry2Insert',entry2Insert);
 	},
 	
 })
