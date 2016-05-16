@@ -102,7 +102,7 @@ Template.findplaces.onRendered(function() {
         setLatLng.lng=result.geometry.location.lng();
         Session.set('selectedLocation',setLatLng);
       });
-      console.log(mappy);
+      //console.log(mappy);
     }
   });
 });
@@ -110,11 +110,11 @@ Template.findplaces.onRendered(function() {
 Template.surf.events({
   'submit .new-search'(event){
     event.preventDefault();
-    console.log(event);
+    //console.log(event);
     var desireChoice=event.target.desire.value;
     var locationChoice=Session.get('selectedLocation');
-    console.log(desireChoice);
-    console.log(locationChoice);  
+    //console.log(desireChoice);
+    //console.log(locationChoice);  
     
     Meteor.call('search', locationChoice, desireChoice)
 

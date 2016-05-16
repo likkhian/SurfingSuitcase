@@ -27,14 +27,14 @@ Meteor.methods({
 	   			value: Math.round(thisDist)
 	   		});
 	   	});
-	   	console.log(distanceBetweenUs);
+	   	//console.log(distanceBetweenUs);
 	   	
 	   	//sort the array
 	   	distanceBetweenUs.sort(function(a,b){
 	   		return a.value - b.value;
 	   	});
-	   	console.log(distanceBetweenUs[0].key)
-	   	console.log(distanceBetweenUs[0].value)
+	   	//console.log(distanceBetweenUs[0].key)
+	   	//console.log(distanceBetweenUs[0].value)
 
 	   	SearchResults.remove({});
 
@@ -52,12 +52,12 @@ Meteor.methods({
 	extract: function(){
 		ToServe.remove({}); //remove previous results
 		resultCurser=SearchResults.find();
-		console.log(resultCurser.count())
+		//console.log(resultCurser.count())
 		// resultCurser.forEach(function(entry){
 	 //   		console.log(entry._id,entry.placeId,entry.placeDist);
 	 //   	});
 	 	resultCurser.forEach(function(entry){
-	 		console.log(Query.findOne({_id:entry.placeId}).spaceWifi);
+	 		//console.log(Query.findOne({_id:entry.placeId}).spaceWifi);
 	 		var currentAns = Query.findOne({_id:entry.placeId});
 	 		var spaceCat=currentAns.spaceCat;
 	 		var text=currentAns.text;
