@@ -12,7 +12,7 @@ Meteor.methods({
    	//implement lat long calculations
 
 	   	//bring in the spaces db
-	   	var reslut=Query.findOne({spaceCat:'1'},{fields:{text:1,spaceLat:1,spaceLon:1}});
+	   	//var reslut=Query.findOne({spaceCat:'1'},{fields:{text:1,spaceLat:1,spaceLon:1}});
 	   	//console.log(reslut);
 	   	dbCurser=Query.find()
 
@@ -37,8 +37,8 @@ Meteor.methods({
 	   	//console.log(distanceBetweenUs[0].value)
 
 	   	SearchResults.remove({});
-
-	   	for (i=0; i<distanceBetweenUs.length; i++){
+	   	var pts=5;
+	   	for (i=0; i<5; i++){
 	   		var placeId=distanceBetweenUs[i].key;
 	   		var placeDist=distanceBetweenUs[i].value;
 	   		SearchResults.insert({
@@ -46,6 +46,8 @@ Meteor.methods({
 	   			placeDist,
 	   			createdAt: new Date(),
 	   		});
+	   		Query.update({_id:placeId},{$inc: {votes: pts}});
+	   		pts--;
 	   	};
 	}, 
 

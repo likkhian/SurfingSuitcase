@@ -5,14 +5,17 @@ import { check } from 'meteor/check';
 export const Query = new Mongo.Collection('query');
 
 Meteor.methods({
-  'query.upsert'(entry2Update,spaceCat,text,address,spaceLat,spaceLon,picture,spaceCid,spaceWifi,spacePp,spaceDp) {
+  'query.upsert'(entry2Update,spaceCat,text,address,spaceLat,spaceLon,picture,spaceCid,spaceWifi,spacePp,spaceDp,votes) {
     //check(text, String);
  
     // Make sure the user is logged in before inserting a task
     if (! this.userId) {
       throw new Meteor.Error('not-authorized');
+    };
+    if(!votes){
+      votes=0;
     }
- 
+
     Query.upsert(
       {
         //selector
@@ -29,9 +32,10 @@ Meteor.methods({
         spaceWifi,
         spacePp,
         spaceDp,
+        votes,
         createdAt: new Date(),
         owner: this.userId,
-        username: Meteor.users.findOne(this.userId).username,
+        username: Meteor.users.findOne(this.userId).username,  
     });
   },
   'query.remove'(queryID) {

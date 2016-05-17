@@ -10,7 +10,7 @@ Template.manager.events({
 		//get value from form element
 		const target=event.target;
 		const spaceCat=target.category.value;
-		console.log(spaceCat);
+		//console.log(spaceCat);
 		const text=target.spaceName.value;
 		const address=target.address.value;
 		const spaceLat=target.lattitude.value;
@@ -21,7 +21,8 @@ Template.manager.events({
 		const spacePp=target.powerPoint.value;
 		const spaceDp=target.drinkPrice.value;
 		var entry2Update = Session.get('entry2Insert');
-		console.log(entry2Update);
+		var votes = Session.get('entryScore');
+		//console.log(entry2Update);
 
 		// Insert a task into the collection
 	    // Query.insert({
@@ -38,7 +39,7 @@ Template.manager.events({
 	    //   createdAt: new Date(), // current time
 	    // });
 	    //make api call
-	    Meteor.call('query.upsert',entry2Update,spaceCat,text,address,spaceLat,spaceLon,picture,spaceCid,spaceWifi,spacePp,spaceDp)
+	    Meteor.call('query.upsert',entry2Update,spaceCat,text,address,spaceLat,spaceLon,picture,spaceCid,spaceWifi,spacePp,spaceDp,votes)
 
 	    //clear form
 	    target.spaceName.value='';
@@ -51,6 +52,7 @@ Template.manager.events({
 	    target.drinkPrice.value='';
 	    Session.set('entry2Insert','');
 	    document.getElementById("activeId").innerHTML = '';
+	    document.getElementById("score").innerHTML = '';
 	},
 	'click .delete'(){
 		//Query.remove(this._id);
@@ -61,7 +63,7 @@ Template.manager.events({
 		const entry2Insert=this._id
 		const entryCurser = Query.find(this._id)
 		const entry = entryCurser.fetch()
-		console.log(entry[0]._id)
+		console.log(entry[0])
 		const trgt=document.getElementsByClassName("new-space")
 		console.log(trgt[0])
 		//fill form
@@ -76,8 +78,11 @@ Template.manager.events({
 	    trgt[0].powerPoint.value=entry[0].spacePp;
 	    trgt[0].drinkPrice.value=entry[0].spaceDp;
 	    var myId = entry[0]._id;
+	    var score = entry[0].votes;
 	    console.log(document.getElementById("activeId"))
     	document.getElementById("activeId").innerHTML = myId;
+    	document.getElementById("score").innerHTML = score;
+    	Session.set('entryScore',score);
 	    Session.set('entry2Insert',entry2Insert);
 	},
 	
