@@ -46,7 +46,7 @@ Meteor.methods({
 	   			placeDist,
 	   			createdAt: new Date(),
 	   		});
-	   		Query.update({_id:placeId},{$inc: {votes: pts}});
+	   		Query.update({_id:placeId},{$inc: {votes: pts, hits: 1}});
 	   		pts--;
 	   	};
 	}, 

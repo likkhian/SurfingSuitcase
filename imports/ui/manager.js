@@ -22,6 +22,7 @@ Template.manager.events({
 		const spaceDp=target.drinkPrice.value;
 		var entry2Update = Session.get('entry2Insert');
 		var votes = Session.get('entryScore');
+		var hits = Session.get('hits');
 		//console.log(entry2Update);
 
 		// Insert a task into the collection
@@ -39,7 +40,7 @@ Template.manager.events({
 	    //   createdAt: new Date(), // current time
 	    // });
 	    //make api call
-	    Meteor.call('query.upsert',entry2Update,spaceCat,text,address,spaceLat,spaceLon,picture,spaceCid,spaceWifi,spacePp,spaceDp,votes)
+	    Meteor.call('query.upsert',entry2Update,spaceCat,text,address,spaceLat,spaceLon,picture,spaceCid,spaceWifi,spacePp,spaceDp,votes,hits)
 
 	    //clear form
 	    target.spaceName.value='';
@@ -51,8 +52,11 @@ Template.manager.events({
 	    target.powerPoint.value='';
 	    target.drinkPrice.value='';
 	    Session.set('entry2Insert','');
+	    Session.set('entryScore','');
+	    Session.set('hits','');
 	    document.getElementById("activeId").innerHTML = '';
 	    document.getElementById("score").innerHTML = '';
+	    document.getElementById("hits").innerHTML = '';
 	},
 	'click .delete'(){
 		//Query.remove(this._id);
@@ -79,11 +83,14 @@ Template.manager.events({
 	    trgt[0].drinkPrice.value=entry[0].spaceDp;
 	    var myId = entry[0]._id;
 	    var score = entry[0].votes;
+	    var hits = entry[0].hits;
 	    console.log(document.getElementById("activeId"))
     	document.getElementById("activeId").innerHTML = myId;
     	document.getElementById("score").innerHTML = score;
+    	document.getElementById("hits").innerHTML = hits;
     	Session.set('entryScore',score);
 	    Session.set('entry2Insert',entry2Insert);
+	    Session.set('hits',hits);
 	},
 	
 })

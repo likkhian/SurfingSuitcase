@@ -5,7 +5,7 @@ import { check } from 'meteor/check';
 export const Query = new Mongo.Collection('query');
 
 Meteor.methods({
-  'query.upsert'(entry2Update,spaceCat,text,address,spaceLat,spaceLon,picture,spaceCid,spaceWifi,spacePp,spaceDp,votes) {
+  'query.upsert'(entry2Update,spaceCat,text,address,spaceLat,spaceLon,picture,spaceCid,spaceWifi,spacePp,spaceDp,votes,hits) {
     //check(text, String);
  
     // Make sure the user is logged in before inserting a task
@@ -14,6 +14,9 @@ Meteor.methods({
     };
     if(!votes){
       votes=0;
+    }
+    if(!hits){
+      hits=0;
     }
 
     Query.upsert(
@@ -33,6 +36,7 @@ Meteor.methods({
         spacePp,
         spaceDp,
         votes,
+        hits,
         createdAt: new Date(),
         owner: this.userId,
         username: Meteor.users.findOne(this.userId).username,  
