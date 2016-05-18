@@ -67,8 +67,6 @@
             </div>
           </div>
         </div>
-       <!-- {{> placesa}}
-       {{> map}} -->
 
        
     </form>
@@ -77,24 +75,6 @@
 </div>
 </template>
 
-<template name="map">  
-  <div class="map-container">
-    {{#unless geolocationError}}
-      {{> googleMap name="map" options=mapOptions}}
-    {{else}}
-      Geolocation failed: {{geolocationError}}
-    {{/unless}}    
-  </div>
-  <p id="location"></p>
-</template>  
-
-<template name="placesa">
-  <div class="calleded">
-    <p>"{{jimm.lat}}"</p>
-    <p>"{{jimm.lng}}"</p>
-    <p id="testconvert"></p>
-  </div>
-</template>
 
 <template name="findplaces">
     <div class="form-group">
@@ -110,5 +90,5 @@
       
       </div>
     
-    <!-- {{> googleMap name="findplaces" options=mapOptions}} -->
 </template>
+
