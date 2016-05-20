@@ -1,6 +1,6 @@
 import { Template } from 'meteor/templating';
 import './surf.html';
-import {Search} from '../api/search.js';
+//import {Search} from '../api/search.js';
 
 
 Meteor.startup(function() {  
@@ -44,11 +44,21 @@ Template.surf.events({
     event.preventDefault();
     //console.log(event);
     var desireChoice=event.target.desire.value;
+    Session.set('desireChoice',desireChoice);
     var locationChoice=Session.get('selectedLocation');
     //console.log(desireChoice);
     console.log(locationChoice);  
     
-    Meteor.call('search', locationChoice, desireChoice)
+    Meteor.call('search', locationChoice, desireChoice,function(error,result){
+      if(error){
+        console.log(error.reason);
+        return;
+      }
+      var distanceBetweenUs = new Array();
+      distanceBetweenUs = result;
+      Session.set('distanceBetweenUs',distanceBetweenUs);
+      return distanceBetweenUs;
+    });
 
     Router.go('/results/'+ desireChoice+ "&lat="+locationChoice.lat + "&lng"+locationChoice.lng,
       {data:function(){
@@ -57,80 +67,3 @@ Template.surf.events({
     });
   }
 });
-
-
-      // var mappy = $("input").geocomplete({
-      // })
-      // .bind("geocode:result",function(event,result){
-      //   console.log(result.geometry.location.lat());
-      //   console.log(result.geometry.location.lng());
-      //   var setLatLng = new Object();
-      //   setLatLng.lat=result.geometry.location.lat();
-      //   setLatLng.lng=result.geometry.location.lng();
-      //   Session.set('selectedLocation',setLatLng);
-      // });
-      //console.log(mappy);
-// var MAP_ZOOM = 20;
-// Template.map.helpers({  
-//   geolocationError: function() {
-//     var error = Geolocation.error();
-//     return error && error.message;
-//   },
-//   mapOptions: function() {
-//     var latLng = Geolocation.latLng();
-//     // Initialize the map once we have the latLng.
-//     if (GoogleMaps.loaded() && latLng) {
-//       return {
-//         center: new google.maps.LatLng(latLng.lat, latLng.lng),
-//         zoom: MAP_ZOOM
-//       };
-//     }
-    
-//   }
-// });
-
-// Template.map.onCreated(function() {  
-//   GoogleMaps.ready('map', function(map) {
-//     var latLng = Geolocation.latLng();
-
-//     var marker = new google.maps.Marker({
-//       position: new google.maps.LatLng(latLng.lat, latLng.lng),
-//       map: map.instance
-//     });
-//   });
-// });
-
-// Template.placesa.helpers({
-//  jimm: function(){
-//     var latLng = Geolocation.latLng();
-//     if (GoogleMaps.loaded() && latLng) {
-//       console.log(latLng);
-//     return latLng
-//     }
-//   }
-    
-// });
-
-// Template.findplaces.helpers({
-//   mapOptions: function() {
-//     var latLng = Geolocation.latLng();
-//     // Initialize the map once we have the latLng.
-//     if (GoogleMaps.loaded() && latLng) {
-//       return {
-//         center: new google.maps.LatLng(latLng.lat, latLng.lng),
-//         zoom: MAP_ZOOM
-//       };
-//     }   
-//   }
-// })
-// Template.findplaces.onCreated(function() {  
-//   GoogleMaps.ready('findplaces', function(map) {
-//     var latLng = Geolocation.latLng();
-
-//     var marker = new google.maps.Marker({
-//       position: new google.maps.LatLng(latLng.lat, latLng.lng),
-//       map: map.instance,
-//       draggable: true
-//     });
-//   });
-// });

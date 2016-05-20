@@ -3,17 +3,12 @@ import { Mongo } from 'meteor/mongo';
 import { Query } from './query.js';
 
 export const SearchResults = new Mongo.Collection('searchResults');
-export const ToServe = new Mongo.Collection('toServe');
+//export const ToServe = new Mongo.Collection('toServe');
 
 Meteor.methods({
 
 	search: function(locationChoice,desireChoice) {
-   	// console.log(locationChoice.lat);
    	//implement lat long calculations
-
-	   	//bring in the spaces db
-	   	//var reslut=Query.findOne({spaceCat:'1'},{fields:{text:1,spaceLat:1,spaceLon:1}});
-	   	//console.log(reslut);
 	   	dbCurser=Query.find()
 
 	   	//key value pair of loc id and distances
@@ -35,8 +30,9 @@ Meteor.methods({
 	   	});
 	   	//console.log(distanceBetweenUs[0].key)
 	   	//console.log(distanceBetweenUs[0].value)
+	   	distanceBetweenUs = distanceBetweenUs.slice(0,5);
 
-	   	SearchResults.remove({});
+	   	//add points to the search results
 	   	var pts=5;
 	   	for (i=0; i<5; i++){
 	   		var placeId=distanceBetweenUs[i].key;
@@ -49,63 +45,12 @@ Meteor.methods({
 	   		Query.update({_id:placeId},{$inc: {votes: pts, hits: 1}});
 	   		pts--;
 	   	};
+	   	//console.log(distanceBetweenUs);
+	    return distanceBetweenUs;
 	}, 
-
-	extract: function(){
-		ToServe.remove({}); //remove previous results
-		resultCurser=SearchResults.find();
-		//console.log(resultCurser.count())
-		// resultCurser.forEach(function(entry){
-	 //   		console.log(entry._id,entry.placeId,entry.placeDist);
-	 //   	});
-	 	resultCurser.forEach(function(entry){
-	 		//console.log(Query.findOne({_id:entry.placeId}).spaceWifi);
-	 		var currentAns = Query.findOne({_id:entry.placeId});
-	 		var spaceCat=currentAns.spaceCat;
-	 		var text=currentAns.text;
-	 		var address=currentAns.address;
-	 		var spaceLat=currentAns.spaceLat;
-		    var	spaceLon=currentAns.spaceLon;
-		    var spaceCid=currentAns.spaceCid;
-		    var picture=currentAns.picture;
-		    var spaceWifi=currentAns.spaceWifi;
-		    if(spaceWifi==='0'){
-			      spaceWifi="None";
-			}else if(spaceWifi==='1'){
-			      spaceWifi="Basic";
-			}else if(spaceWifi==='2'){
-			      spaceWifi="Good";
-			}else if(spaceWifi==='3'){
-			      spaceWifi="Excellent";
-			}else{
-			      spaceWifi="No Info";
-			};
-		    var spacePp=currentAns.spacePp;
-		    var spaceDp=currentAns.spaceDp;
-	 		theDist=entry.placeDist;
-	 		ToServe.insert({
-	 			theDist,
-	 			spaceCat,
-		      	text,
-		      	address,
-		      	spaceLat,
-		      	spaceLon,
-		      	spaceCid,
-		      	picture,
-		      	spaceWifi,
-		      	spacePp,
-		      	spaceDp,
-	 		});
-	 	}); 	
-	}
 
 });
 
-// //publish results to serve
-// Meteor.publish('ToServe',function(limit){
-// 	var dl=limit || 10;
-// 	return ToServe.find({},{limit:dl});
-// });
 
 function distCalc(locationChoice,spaceLat,spaceLon){
 	var R = 6378137; // Earth’s mean radius in meter
