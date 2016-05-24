@@ -105,8 +105,8 @@ Template.manager.helpers({
 	admincheck:function(){
 		console.log(Meteor.userId());
 		console.log(Meteor.user().profile);
-		//console.log(Meteor.users);
-		return Meteor.userId()==="vxdnt4THPpA9q45sR";
+		console.log(Meteor.users);
+		return Meteor.user().username==="SSadmin";
 	},
 	collectedEmails: function() {
 		return Emails.find({})
