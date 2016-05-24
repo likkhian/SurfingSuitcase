@@ -31,4 +31,5 @@ accounts-password
 force-ssl
 fortawesome:fontawesome
 okgrow:analytics
-simple:reactive-method
+email
+accounts-google

@@ -11,18 +11,60 @@ Meteor.methods({
    	//implement lat long calculations
 	   	dbCurser=Query.find()
 
-	   	//key value pair of loc id and distances
-	   	var distanceBetweenUs= new Array();
-	   	dbCurser.forEach(function(entry){
-	   		//console.log(entry._id);
-	   		var idVal=entry._id;
-	   		var thisDist=distCalc(locationChoice,entry.spaceLat,entry.spaceLon)
-	   		distanceBetweenUs.push({
-	   			key: idVal,
-	   			value: Math.round(thisDist)
-	   		});
-	   	});
-	   	//console.log(distanceBetweenUs);
+	   	//implement option switches
+
+	   	switch(desireChoice){
+	   		case '1':
+			   	//key value pair of loc id and distances
+			   	var distanceBetweenUs= new Array();
+			   	dbCurser.forEach(function(entry){
+			   		console.log(parseInt(entry.spaceWifi));
+			   		//console.log(entry._id);
+			   		var idVal=entry._id;
+			   		var thisDist=distCalc(locationChoice,entry.spaceLat,entry.spaceLon)
+			   		distanceBetweenUs.push({
+			   			key: idVal,
+			   			value: Math.round(thisDist)
+			   		});
+			   	});
+			   	//console.log(distanceBetweenUs);
+
+	   		break;
+	   		case '2':
+	   			//wifi good and above only
+	   			//key value pair of loc id and distances
+			   	var distanceBetweenUs= new Array();
+			   	dbCurser.forEach(function(entry){
+			   		//console.log(entry._id);
+			   		if(parseInt(entry.spaceWifi)>1){
+				   		var idVal=entry._id;
+				   		var thisDist=distCalc(locationChoice,entry.spaceLat,entry.spaceLon)
+				   		distanceBetweenUs.push({
+				   			key: idVal,
+				   			value: Math.round(thisDist)
+				   		});
+				   	};
+			   	});
+			   	//console.log(distanceBetweenUs);
+	   		break;
+	   		case '3':
+	   			//wifi and power
+	   			//key value pair of loc id and distances
+			   	var distanceBetweenUs= new Array();
+			   	dbCurser.forEach(function(entry){
+			   		console.log(entry.spacePp);
+			   		if(parseInt(entry.spaceWifi)>1 && parseInt(entry.spacePp)>1){
+				   		var idVal=entry._id;
+				   		var thisDist=distCalc(locationChoice,entry.spaceLat,entry.spaceLon)
+				   		distanceBetweenUs.push({
+				   			key: idVal,
+				   			value: Math.round(thisDist)
+				   		});
+				   	};
+			   	});
+			   	console.log(distanceBetweenUs);
+	   		break;
+	   	}
 	   	
 	   	//sort the array
 	   	distanceBetweenUs.sort(function(a,b){
@@ -30,11 +72,17 @@ Meteor.methods({
 	   	});
 	   	//console.log(distanceBetweenUs[0].key)
 	   	//console.log(distanceBetweenUs[0].value)
-	   	distanceBetweenUs = distanceBetweenUs.slice(0,5);
+	   	console.log(distanceBetweenUs.length);
+	   	var sliceTo = distanceBetweenUs.length;
+	   	if (sliceTo > 5){
+	   		sliceTo = 5;
+	   	};
+	   	distanceBetweenUs = distanceBetweenUs.slice(0,sliceTo);
+	   	console.log(distanceBetweenUs);
 
 	   	//add points to the search results
-	   	var pts=5;
-	   	for (i=0; i<5; i++){
+	   	var pts=sliceTo;//so that if only 3 locs show up, top gets 3 pts
+	   	for (i=0; i<sliceTo; i++){
 	   		var placeId=distanceBetweenUs[i].key;
 	   		var placeDist=distanceBetweenUs[i].value;
 	   		SearchResults.insert({

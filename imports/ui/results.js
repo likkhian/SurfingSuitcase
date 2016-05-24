@@ -12,13 +12,16 @@ Template.results.helpers({
   //   { Text: 'This is location 2' },
   //   { Text: 'params' },
   // ],
+
+
   SSreturns(){
     // var selectedLocation = Session.get('selectedLocation');
     // var desireChoice = Session.get('desireChoice');
     ToServe.remove({});
     var distanceBetweenUs = Session.get('distanceBetweenUs');
+    var resultLength = distanceBetweenUs.length;
 
-    for(var i=0;i<5;i++){
+    for(var i=0;i<resultLength;i++){
       var currentAns = Query.findOne({_id:distanceBetweenUs[i].key});
       var spaceCat=currentAns.spaceCat;
       var text=currentAns.text;
@@ -57,6 +60,7 @@ Template.results.helpers({
       });
       
     };
+    document.getElementById('resultHeader').innerHTML = "Here are the "+resultLength+" nearest places!";
     return ToServe.find({});
 	},
 

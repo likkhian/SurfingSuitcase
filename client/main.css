@@ -68,3 +68,7 @@ select{
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
    color:    #009;
 }
+#resultHeader{
+	font-weight: bold;
+	padding-bottom: 10px;
+}

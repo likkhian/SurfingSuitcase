@@ -97,13 +97,16 @@ Template.manager.events({
 
 Template.manager.helpers({
   	spacelists: function() {
-  		console.log(Meteor.user().username);
+  		//console.log(Meteor.user().username);
 		return Query.find({}); //this is still not using methods.
 		//return Meteor.call('query.list')
 	},
 	//only admin can edit
 	admincheck:function(){
-		return Meteor.user().username==="SSadmin";
+		console.log(Meteor.userId());
+		console.log(Meteor.user().profile);
+		//console.log(Meteor.users);
+		return Meteor.userId()==="vxdnt4THPpA9q45sR";
 	},
 	collectedEmails: function() {
 		return Emails.find({})

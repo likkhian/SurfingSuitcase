@@ -6,3 +6,14 @@ import '../imports/api/email.js'
 //   // code to run on server at startup
 //   
 // });
+Meteor.startup( function() {
+  process.env.MAIL_URL = "smtp://lik%40surfingsuitcase.com:LIK@work123@box1244.bluehost.com:465";
+  console.log(Meteor.settings)
+});
+
+Email.send({
+	to:"likkhian@gmail.com",
+	from:"lik@surfingsuitcase.com",
+	subject:"Testing email",
+	text:"ok lets try this"
+});
