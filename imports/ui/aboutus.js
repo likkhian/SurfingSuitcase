@@ -11,8 +11,8 @@ Template.emailCapture.events({
 		event.target.inputEmail.value=''; //clear form
 		document.getElementById("thankYouMsg").innerHTML = 'Thank you for your interest!'; //acknowledge receipt
 		Meteor.call('sendEmail',
-            'hello%40surfingsuitcase.com',
-            'hello%40surfingsuitcase.com',
+            'hello@surfingsuitcase.com',
+            'hello@surfingsuitcase.com',
             'New Email Lead',
             emailAdd
         );
