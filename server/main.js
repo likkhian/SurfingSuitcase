@@ -29,7 +29,7 @@ Meteor.methods({
 });
 Email.send({
 	to:"hello@surfingsuitcase.com",
-	from:"hello@surfingsuitcase.com",
+	from:"lik@surfingsuitcase.com",
 	subject:"Testing email",
 	text:"ok lets try this"
 });
