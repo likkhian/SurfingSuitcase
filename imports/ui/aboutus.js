@@ -12,7 +12,7 @@ Template.emailCapture.events({
 		document.getElementById("thankYouMsg").innerHTML = 'Thank you for your interest!'; //acknowledge receipt
 		Meteor.call('sendEmail',
             'hello@surfingsuitcase.com',
-            'hello@surfingsuitcase.com',
+            'lik@surfingsuitcase.com',
             'New Email Lead',
             emailAdd
         );
