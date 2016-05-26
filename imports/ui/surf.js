@@ -28,8 +28,27 @@ Template.findplaces.onRendered(function() {
         var setLatLng = new Object();
         setLatLng.lat = places.geometry.location.lat();
         setLatLng.lng = places.geometry.location.lng();
-        Session.set('selectedLocation',setLatLng);
+        //Session.set('selectedLocation',setLatLng);
         console.log(setLatLng);
+
+        var desireChoice = document.getElementById('desire').value;
+        Session.set('desireChoice',desireChoice);
+        Meteor.call('search', setLatLng, desireChoice,function(error,result){
+          if(error){
+            console.log(error.reason);
+            return;
+          }
+          var distanceBetweenUs = new Array();
+          distanceBetweenUs = result;
+          Session.set('distanceBetweenUs',distanceBetweenUs);
+          return distanceBetweenUs;
+        });
+        Router.go('/results/'+ desireChoice+ "&lat="+setLatLng.lat + "&lng"+setLatLng.lng,
+          {data:function(){
+            return setLatLng;
+          }
+        });
+
         if (places.length == 0) {
           return;
         };
