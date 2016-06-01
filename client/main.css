@@ -8,7 +8,6 @@ form{
 }
 header{
 	text-align: center;
-	padding-bottom: 20px;
 }
 select{
 	height: 30px;
@@ -74,4 +73,7 @@ select{
 }
 #profileSettings{
 	text-align: center;
+}
+#loginator{
+	padding-bottom: 10px;
 }

@@ -10,6 +10,14 @@ Meteor.startup(function() {
   });
 });
 
+Template.surf.helpers({
+  loginPrompt(){
+    console.log(Accounts.userId());
+    // if(Accounts.userId()){
+    //   document.getElementById('signinPrompt').innerHTML = "Welcome!";
+    // };
+  },
+});
 
 Template.findplaces.onRendered(function() {
   this.autorun(function () {
@@ -86,3 +94,4 @@ Template.surf.events({
     });
   }
 });
+

@@ -15,6 +15,9 @@ Template.results.helpers({
 
 
   SSreturns(){
+    if(!Meteor.userId()){
+      $('#callToSignup').modal()
+    };
     // var selectedLocation = Session.get('selectedLocation');
     // var desireChoice = Session.get('desireChoice');
     ToServe.remove({});

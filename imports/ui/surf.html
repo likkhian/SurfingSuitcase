@@ -10,7 +10,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Surfing Suitcase</a>
+      <a class="navbar-brand" href="#">Surfing Suitcase</a> 
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
@@ -25,10 +25,15 @@
 
 
 <div class="starter-template">
+  
     <header><h1>Surfing Suitcase</h1>
       <h4>Surfing Suitcase finds spaces nearby that fits your needs</h4>
     </header>
+
   <div class="container-fluid container-limiter">
+    <span>
+      <div id="loginator">{{#if currentUser}}hello, {{/if}}{{> loginButtons }}</div>
+    </span>
 
     <form class="form-horizontal new-search"> 
       <div class="form-group">
