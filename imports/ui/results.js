@@ -13,7 +13,7 @@ Template.results.helpers({
   //   { Text: 'params' },
   // ],
 
-
+  //invite people to sign up if they haven't yet.
   SSreturns(){
     if(!Meteor.userId()){
       $('#callToSignup').modal()

@@ -12,7 +12,8 @@ Meteor.startup(function() {
 
 Template.surf.helpers({
   loginPrompt(){
-    console.log(Accounts.userId());
+    // console.log(Accounts.userId());
+    // console.log(Meteor.userId());
     // if(Accounts.userId()){
     //   document.getElementById('signinPrompt').innerHTML = "Welcome!";
     // };
@@ -20,13 +21,17 @@ Template.surf.helpers({
 });
 
 Template.findplaces.onRendered(function() {
+  if(!Meteor.userId()){
+      $('#firstCallToSignup').modal('show')
+    };
+  //load google geolocation
   this.autorun(function () {
     var latLng = Geolocation.latLng();
     console.log(latLng);
     if (GoogleMaps.loaded() && latLng) {
-      
+      //set current location as default selectedLocation
       Session.set('selectedLocation',latLng);
-      
+      //implement google places autocomplete
       var input = document.getElementById('locationpick');
       var searchBox = new google.maps.places.Autocomplete(input);
       // Listen for the event fired when the user selects a prediction and retrieve
@@ -36,9 +41,9 @@ Template.findplaces.onRendered(function() {
         var setLatLng = new Object();
         setLatLng.lat = places.geometry.location.lat();
         setLatLng.lng = places.geometry.location.lng();
-        //Session.set('selectedLocation',setLatLng);
-        console.log(setLatLng);
-
+        
+        //once location is selected, grab desire value, call search method
+        //and save results in a session variable, then go to result page.
         var desireChoice = document.getElementById('desire').value;
         Session.set('desireChoice',desireChoice);
         Meteor.call('search', setLatLng, desireChoice,function(error,result){
@@ -66,6 +71,7 @@ Template.findplaces.onRendered(function() {
   });
 });
 
+//when default location is used and the user just presses the 'surf' button
 Template.surf.events({
   'submit .new-search'(event){
     event.preventDefault();
@@ -74,7 +80,6 @@ Template.surf.events({
     Session.set('desireChoice',desireChoice);
     var locationChoice=Session.get('selectedLocation');
     //console.log(desireChoice);
-    console.log(locationChoice);  
     
     Meteor.call('search', locationChoice, desireChoice,function(error,result){
       if(error){

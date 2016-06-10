@@ -5,13 +5,16 @@ import { Query } from './query.js';
 export const SearchResults = new Mongo.Collection('searchResults');
 //export const ToServe = new Mongo.Collection('toServe');
 
+//search.js contains methods to match a user with his list of spaces
+
 Meteor.methods({
 
 	search: function(locationChoice,desireChoice) {
    	//implement lat long calculations
 	   	dbCurser=Query.find()
 
-	   	//implement option switches
+	   	//implement option switches. Only spaces that match the requirements will be added into
+	   	//the distanceBetweenUs array.
 
 	   	switch(desireChoice){
 	   		case '1':
@@ -72,13 +75,13 @@ Meteor.methods({
 	   	});
 	   	//console.log(distanceBetweenUs[0].key)
 	   	//console.log(distanceBetweenUs[0].value)
-	   	console.log(distanceBetweenUs.length);
+	   	//console.log(distanceBetweenUs.length);
 	   	var sliceTo = distanceBetweenUs.length;
 	   	if (sliceTo > 5){
 	   		sliceTo = 5;
 	   	};
 	   	distanceBetweenUs = distanceBetweenUs.slice(0,sliceTo);
-	   	console.log(distanceBetweenUs);
+	   	//console.log(distanceBetweenUs);
 
 	   	//add points to the search results
 	   	var pts=sliceTo;//so that if only 3 locs show up, top gets 3 pts

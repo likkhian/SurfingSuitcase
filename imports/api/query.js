@@ -4,11 +4,12 @@ import { check } from 'meteor/check';
  
 export const Query = new Mongo.Collection('query');
 
+//query.js contains methods for administrators to upload space information
+
 Meteor.methods({
   'query.upsert'(entry2Update,spaceCat,text,address,spaceLat,spaceLon,picture,spaceCid,spaceWifi,spacePp,spaceDp,votes,hits) {
-    //check(text, String);
  
-    // Make sure the user is logged in before inserting a task
+    // Make sure the user is logged in before inserting a location
     if (! this.userId) {
       throw new Meteor.Error('not-authorized');
     };
@@ -47,7 +48,5 @@ Meteor.methods({
  
     Query.remove(queryID);
   },
-  // 'query.list'(){
-  // 	Query.find({});
-  // },
+ 
 });

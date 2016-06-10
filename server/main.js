@@ -11,6 +11,8 @@ import { Email } from 'meteor/email'
 //   process.env.MAIL_URL = "smtp://hello%40surfingsuitcase.com:DXL@work123@box1244.bluehost.com:465";
 //   console.log(Meteor.settings)
 // });
+
+//method to send email.
 Meteor.methods({
   sendEmail: function (to, from, subject, text) {
     check([to, from, subject, text], [String]);
