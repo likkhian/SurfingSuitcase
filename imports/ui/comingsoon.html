@@ -1,0 +1,38 @@
+<template name="comingsoon">
+<div class="starter-template">
+<!--navigation bar starts -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="./">Surfing Suitcase</a> 
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="./">Surf</a></li>
+        <li><a href="http://www.facebook.com/surfingsuitcase/">Facebook</a></li>
+        <li><a href="./aboutus">About us</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+<!-- navigation bar ends -->
+
+	<div class="container-fluid">
+	    <form class="emailEntryComing">
+	      <div class="form-group">
+	        <label for="inputEmailComing">Reservations and Deals are coming soon! Enter your email to be notified when you can redeem 50% off deals, and reserve your favourite seat!</label>
+	        <input type="text" class="form-control" id="inputNameComing" placeholder="Name">
+	        <input type="email" class="form-control" id="inputEmailComing" placeholder="Email">
+	      </div>
+	      <button type="submit" class="btn btn-default">Submit</button>
+	      <span id="thankYouMsg"></span>
+	    </form>
+	</div>
+</div>
+</template>

@@ -45,7 +45,7 @@ select{
 	word-wrap: break-word;
 }
 .container-limiter {
-	max-width: 600px;
+	max-width: 500px;
 }
 #hypeman{
 	font-size: large;
@@ -76,4 +76,7 @@ select{
 }
 #loginator{
 	padding-bottom: 10px;
+}
+.info-btn{
+	padding-top: 10px;
 }

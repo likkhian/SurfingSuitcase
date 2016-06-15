@@ -54,13 +54,42 @@
 	<div class="row">
 		<div id="resultbox">  
       <a href={{spaceCid}} target="_blank"><img src={{picture}} alt="storefront" width="100%" height="200px"></a>
-			<p><b>{{text}}</b> ({{theDist}}m away)
-  			<br><a href={{spaceCid}} target="_blank"> {{address}}</a>
-        <br><i class="fa fa-wifi" aria-hidden="true"></i>:{{spaceWifi}} &nbsp;&nbsp;
-        <i class="fa fa-plug" aria-hidden="true"></i>:{{spacePp}} &nbsp;&nbsp;
-        <i class="fa fa-coffee" aria-hidden="true"></i>:{{spaceDp}}
-      </p>
+			<div class="col-xs-9">
+        <p><b>{{text}}</b> ({{theDist}}m away)
+    			<br><a href={{spaceCid}} target="_blank"> {{address}}</a>
+          <br><i class="fa fa-wifi" aria-hidden="true"></i>:{{spaceWifi}} &nbsp;&nbsp;
+          <i class="fa fa-plug" aria-hidden="true"></i>:{{spacePp}} &nbsp;&nbsp;
+          <i class="fa fa-coffee" aria-hidden="true"></i>:{{spaceDp}}
+        </p>
+      </div>
+      <div class="col-xs-3 info-btn">
+        <a data-toggle="modal" data-target="#placeInfo" class="btn btn-info" type="button">Details</a>
+      </div>
 		</div>
-		
 	</div>
+
+<!-- Modal -->
+  <div class="modal fade" id="placeInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">{{text}}</h4>
+        </div>
+        <div class="modal-body">
+          <p>{{text}} is about {{theDist}}m away from your selected location.
+            <br><i class="fa fa-wifi" aria-hidden="true"></i>:{{spaceWifi}} &nbsp;&nbsp;
+            <i class="fa fa-plug" aria-hidden="true"></i>:{{spacePp}} &nbsp;&nbsp;
+            <i class="fa fa-coffee" aria-hidden="true"></i>:{{spaceDp}}
+          </p>
+        </div>
+        <div class="modal-footer">
+          <a href="https://suitcaseapp.herokuapp.com/comingsoon" type="button" class="btn btn-success">Redeem Deal</a>
+          <a href={{spaceCid}} type="button" class="btn btn-info">Directions</a>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </template>
