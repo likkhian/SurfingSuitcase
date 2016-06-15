@@ -32,7 +32,7 @@
 
   <div class="container-fluid container-limiter">
     <span>
-      <div id="loginator">{{#if currentUser}}hello, {{/if}}{{> loginButtons }}</div>
+      <div id="loginator">{{#if currentUser}}Hello, {{/if}} {{currentUser.username}}</div>
     </span>
 
     <form class="form-horizontal new-search"> 
