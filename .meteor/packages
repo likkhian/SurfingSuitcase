@@ -28,7 +28,6 @@ jeremy:geocomplete
 session
 accounts-ui
 accounts-password
-force-ssl
 fortawesome:fontawesome
 okgrow:analytics
 email
