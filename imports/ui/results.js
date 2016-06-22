@@ -66,7 +66,11 @@ Template.results.helpers({
     document.getElementById('resultHeader').innerHTML = "Here are the "+resultLength+" nearest places!";
     return ToServe.find({});
 	},
+});
 
-
-
+Template.SSreturn.events({
+  'click .redeem': function(){
+    $('#placeInfo').modal('hide')
+    .on('hidden.bs.modal', function (e) {Router.go('/comingsoon')})
+  },
 });

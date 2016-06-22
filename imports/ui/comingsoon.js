@@ -19,4 +19,4 @@ Template.comingsoon.events({
             emailAdd + name
         );
 	},
-})
+});
