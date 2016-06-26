@@ -71,6 +71,7 @@ Template.results.helpers({
 Template.SSreturn.events({
   'click .redeem': function(){
     $('#placeInfo').modal('hide')
+    //hide triggers hidden.bs.modal event which triggers the router.
     .on('hidden.bs.modal', function (e) {Router.go('/comingsoon')})
   },
 });
