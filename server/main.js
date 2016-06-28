@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import '../imports/api/query.js'
+import '../imports/api/spaces.js'
 import '../imports/api/search.js'
 import '../imports/api/email.js'
 import { Email } from 'meteor/email'

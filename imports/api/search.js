@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
-import { Query } from './query.js';
+import { Spaces } from './spaces.js';
 
 export const SearchResults = new Mongo.Collection('searchResults');
 //export const ToServe = new Mongo.Collection('toServe');
@@ -11,7 +11,7 @@ Meteor.methods({
 
 	search: function(locationChoice,desireChoice) {
    	//implement lat long calculations
-	   	dbCurser=Query.find()
+	   	dbCurser=Spaces.find()
 
 	   	//implement option switches. Only spaces that match the requirements will be added into
 	   	//the distanceBetweenUs array.
@@ -93,7 +93,7 @@ Meteor.methods({
 	   			placeDist,
 	   			createdAt: new Date(),
 	   		});
-	   		Query.update({_id:placeId},{$inc: {votes: pts, hits: 1}});
+	   		Spaces.update({_id:placeId},{$inc: {votes: pts, hits: 1}});
 	   		pts--;
 	   	};
 	   	//console.log(distanceBetweenUs);

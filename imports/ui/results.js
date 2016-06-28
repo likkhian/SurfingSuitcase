@@ -1,5 +1,5 @@
 import { Template } from 'meteor/templating';
-import { Query } from '../api/query.js';
+import { Spaces } from '../api/spaces.js';
 import './results.html';
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
@@ -25,7 +25,7 @@ Template.results.helpers({
     var resultLength = distanceBetweenUs.length;
 
     for(var i=0;i<resultLength;i++){
-      var currentAns = Query.findOne({_id:distanceBetweenUs[i].key});
+      var currentAns = Spaces.findOne({_id:distanceBetweenUs[i].key});
       var spaceCat=currentAns.spaceCat;
       var text=currentAns.text;
       var address=currentAns.address;

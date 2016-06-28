@@ -1,5 +1,5 @@
 import { Template } from 'meteor/templating';
-import {Query} from '../api/query.js';
+import {Spaces} from '../api/spaces.js';
 import { Meteor } from 'meteor/meteor';
 import './manager.html';
 import { Emails } from '../api/email.js';
@@ -40,7 +40,7 @@ Template.manager.events({
 	    //   createdAt: new Date(), // current time
 	    // });
 	    //make api call
-	    Meteor.call('query.upsert',entry2Update,spaceCat,text,address,spaceLat,spaceLon,picture,spaceCid,spaceWifi,spacePp,spaceDp,votes,hits)
+	    Meteor.call('spaces.upsert',entry2Update,spaceCat,text,address,spaceLat,spaceLon,picture,spaceCid,spaceWifi,spacePp,spaceDp,votes,hits)
 
 	    //clear form
 	    target.spaceName.value='';
@@ -60,12 +60,12 @@ Template.manager.events({
 	},
 	'click .delete'(){
 		//Query.remove(this._id);
-		Meteor.call('query.remove',this._id);
+		Meteor.call('spaces.remove',this._id);
 	},
 	'click .edit'(){
 		//make edit
 		const entry2Insert=this._id
-		const entryCurser = Query.find(this._id)
+		const entryCurser = Spaces.find(this._id)
 		const entry = entryCurser.fetch()
 		console.log(entry[0])
 		const trgt=document.getElementsByClassName("new-space")
@@ -98,7 +98,7 @@ Template.manager.events({
 Template.manager.helpers({
   	spacelists: function() {
   		//console.log(Meteor.user().username);
-		return Query.find({}); //this is still not using methods.
+		return Spaces.find({}); //this is still not using methods.
 		//return Meteor.call('query.list')
 	},
 	//only admin can edit

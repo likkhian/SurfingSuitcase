@@ -2,25 +2,27 @@ import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
  
-export const Query = new Mongo.Collection('query');
+export const Spaces = new Mongo.Collection('spaces');
 
 //query.js contains methods for administrators to upload space information
 
 Meteor.methods({
-  'query.upsert'(entry2Update,spaceCat,text,address,spaceLat,spaceLon,picture,spaceCid,spaceWifi,spacePp,spaceDp,votes,hits) {
+  'spaces.upsert'(entry2Update,spaceCat,text,address,spaceLat,spaceLon,picture,spaceCid,spaceWifi,spacePp,spaceDp,votes,hits) {
  
     // Make sure the user is logged in before inserting a location
     if (! this.userId) {
       throw new Meteor.Error('not-authorized');
     };
+
     if(!votes){
       votes=0;
     }
+
     if(!hits){
       hits=0;
     }
 
-    Query.upsert(
+    Spaces.upsert(
       {
         //selector
         _id:entry2Update
@@ -43,10 +45,10 @@ Meteor.methods({
         username: Meteor.users.findOne(this.userId).username,  
     });
   },
-  'query.remove'(queryID) {
+  'spaces.remove'(queryID) {
     check(queryID, String);
  
-    Query.remove(queryID);
+    Spaces.remove(queryID);
   },
  
 });
