@@ -63,13 +63,13 @@
         </p>
       </div>
       <div class="col-xs-3 info-btn">
-        <a data-toggle="modal" data-target="#placeInfo" class="btn btn-info" type="button">Details</a>
+        <a data-toggle="modal" data-target="#{{_id}}" class="btn btn-info" type="button">Details</a>
       </div>
 		</div>
 	</div>
 
 <!-- Modal -->
-  <div class="modal fade" id="placeInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal fade" id="{{_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -81,10 +81,10 @@
             <br><i class="fa fa-wifi" aria-hidden="true"></i>:{{spaceWifi}} &nbsp;&nbsp;
             <i class="fa fa-plug" aria-hidden="true"></i>:{{spacePp}} &nbsp;&nbsp;
             <i class="fa fa-coffee" aria-hidden="true"></i>:{{spaceDp}}
+            <button type="button" class="btn btn-success redeem">Redeem Deal</button>
           </p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-success redeem">Redeem Deal</button>
           <a href={{spaceCid}} type="button" class="btn btn-info">Directions</a>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
