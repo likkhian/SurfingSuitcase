@@ -11,7 +11,7 @@ Template.comingsoon.events({
 		Meteor.call('emails.insert',emailAdd);
 		event.target.inputEmailComing.value=''; //clear form
 		event.target.inputNameComing.value='';
-		document.getElementById("thankYouMsg").innerHTML = 'Thank you for your interest! visit our <a href="http://www.facebook.com/surfingsuitcase/">Facebook</a> page.'; //acknowledge receipt
+		document.getElementById("thankYouMsg").innerHTML = 'Thank you for your interest! visit our <a href="http://www.facebook.com/surfingsuitcase/">Facebook</a> page, or click the SurfingSuitcase button on the top left to make another search.'; //acknowledge receipt
 		Meteor.call('sendEmail',
             'hello@surfingsuitcase.com',
             'lik@surfingsuitcase.com',
