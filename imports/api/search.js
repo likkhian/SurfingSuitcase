@@ -47,6 +47,7 @@ Meteor.methods({
 				case '1':
 					var thisDist = Math.round(distCalc(locationChoice, entry.spaceLat, entry.spaceLon));
 					entry.theDist = thisDist;
+					//console.log(thisDist)
 
 					if (nearestLocations.length < maxResults && thisDist >= longestDistance) {
 						nearestLocations.push(entry);  //Push to the back
@@ -55,18 +56,22 @@ Meteor.methods({
 						//Insert at the front since not the longest distance
 						nearestLocations.unshift(entry);
 					} else if (thisDist < longestDistance) {
+						//sorts the entries in order of distance
+						nearestLocations.sort(function (x, y) {
+							return x.theDist - y.theDist;
+						});
+						//remove last entry
 						nearestLocations.pop();
-						nearestLocations.push(entry);
-						longestDistance = thisDist;
+						//new longest Distance is the last member of the result
+						longestDistance = nearestLocations[nearestLocations.length-1].theDist;
+						//adds new entry to the front
+						nearestLocations.unshift(entry);
+						
 					}
 			}
 		});
 
-		nearestLocations.sort(function (x, y) {
-			return x.theDist - y.theDist;
-		});
-		console.log(nearestLocations);
-
+		
 		//add points to the search results so that if only 3 locs show up, top gets 3 pts
 		var pts = nearestLocations.length;
 		for (var i = 0; i < pts; i++) {
