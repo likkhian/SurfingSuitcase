@@ -71,7 +71,11 @@ Meteor.methods({
 			}
 		});
 
-		
+		//sorts the entries in order of distance
+		nearestLocations.sort(function (x, y) {
+			return x.theDist - y.theDist;
+		});
+						
 		//add points to the search results so that if only 3 locs show up, top gets 3 pts
 		var pts = nearestLocations.length;
 		for (var i = 0; i < pts; i++) {
