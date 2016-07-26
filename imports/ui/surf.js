@@ -48,6 +48,10 @@ Template.findplaces.onRendered(function() {
         setLatLng.lat = places.geometry.location.lat();
         setLatLng.lng = places.geometry.location.lng();
         
+        if (places.length == 0) {
+          return;
+        };
+
         //once location is selected, grab desire value, call search method
         //and save results in a session variable, then go to result page.
         var desireChoice = document.getElementById('desire').value;
@@ -67,12 +71,7 @@ Template.findplaces.onRendered(function() {
             return setLatLng;
           }
         });
-
-        if (places.length == 0) {
-          return;
-        };
       });
-
     };
   });
 });
