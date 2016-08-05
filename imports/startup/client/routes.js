@@ -1,21 +1,11 @@
 import { Template } from 'meteor/templating';
-import './surf.js'
-import './body.html';
-import './profile.js';
-import './aboutus.js';
-import './register.html';
-import './signin.js';
-import './results.js';
-import './manager.js';
-import './comingsoon.js';
-/*Template.body.helpers({
-  tasks: [
-    { text: 'This is task 1' },
-    { text: 'This is task 2' },
-    { text: 'This is task 3' },
-  ],
-});*/
-
+import '../../ui/surf.js'
+import '../../ui/profile.js';
+import '../../ui/aboutus.js';
+import '../../ui/signin.js';
+import '../../ui/results.js';
+import '../../ui/manager.js';
+import '../../ui/comingsoon.js';
 
 
 Router.route('/',{
@@ -32,5 +22,6 @@ Router.route('/results/:id',{
 	data: function(){
 		var params=this.params;
 		console.log(params.id);
+		return params;
 	}
 });

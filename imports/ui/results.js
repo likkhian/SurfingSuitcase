@@ -5,7 +5,7 @@ import { Mongo } from 'meteor/mongo';
 
 import './results.html';
 
-ToServe = new Mongo.Collection(null);
+// ToServe = new Mongo.Collection(null);
 
 Template.results.helpers({
   // SSreturns: [
@@ -16,6 +16,8 @@ Template.results.helpers({
 
   //invite people to sign up if they haven't yet.
   SSreturns(){
+    console.log(this.id);
+    
     if(!Meteor.userId()){
       $('#callToSignup').modal()
     };
