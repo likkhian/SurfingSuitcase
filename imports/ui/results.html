@@ -1,4 +1,5 @@
 <template name="results">
+
  <!--navigation bar starts -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
@@ -9,13 +10,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../">Surfing Suitcase</a>
+      <a class="navbar-brand" href="/">Surfing Suitcase</a>
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li><a href="../">Surf</a></li>
+        <li><a href="/">Surf</a></li>
         <li><a href="http://www.facebook.com/surfingsuitcase/">Facebook</a></li>
-        <li><a href="../aboutus">About us</a></li>
+        <li><a href="/aboutus">About us</a></li>
       </ul>
     </div><!--/.nav-collapse -->
   </div>
@@ -23,7 +24,7 @@
 <!-- navigation bar ends -->
 
 	<div class="container-fluid container-limiter">
-	<header id="resultHeader"></header>
+	<header id="resultHeader">Here are the {{numSpaces}} nearest places!</header>
 	{{#each SSreturns}}
 		{{>SSreturn}}
 	{{/each}}

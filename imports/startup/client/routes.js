@@ -17,11 +17,27 @@ Router.route('/aboutus');
 Router.route('/signin');
 Router.route('/manager');
 Router.route('/comingsoon');
-Router.route('/results/:id',{
-	template:'results',
-	data: function(){
-		var params=this.params;
-		console.log(params.id);
-		return params;
+// Router.route('/results/:id',{
+// 	template:'results',
+// 	data: function(){
+// 		var params=this.params;
+// 		console.log(params.id);
+// 		return params;
+// 	}
+// });
+Router.route('/results/:selection', {
+	name: 'search.results',
+	path: '/results/:selection',
+	template: 'results',
+	data: function () {
+		return this.params;
+	},
+	waitOn: function() {
+		return this.subscribe('spaces');
+	},
+	action: function() {
+		if (this.ready()) {
+			this.render();
+		}
 	}
 });

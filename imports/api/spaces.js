@@ -4,8 +4,16 @@ import { check } from 'meteor/check';
  
 export const Spaces = new Mongo.Collection('spaces');
 
-//query.js contains methods for administrators to upload space information
 
+
+if (Meteor.isServer) {
+    // This code only runs on the server
+    Meteor.publish('spaces', function findAllSpaces() {
+        return Spaces.find();
+    });
+}
+
+//spaces.js helps admin update information and add spaces.
 Meteor.methods({
   'spaces.upsert'(entry2Update,spaceCat,text,address,spaceLat,spaceLon,picture,spaceCid,spaceWifi,spacePp,spaceDp,votes,hits) {
  
@@ -50,5 +58,14 @@ Meteor.methods({
  
     Spaces.remove(queryID);
   },
+  'spaces.upvote'(_id, pts) {
+      Spaces.update(
+          { 
+              _id: _id 
+          },
+          {
+              $inc: { votes: pts, hits: 1 }
+          });
+  }
  
 });

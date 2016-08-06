@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { Spaces } from './spaces.js';
 
-export const SearchResults = new Mongo.Collection('searchResults');
+//export const SearchResults = new Mongo.Collection('searchResults');
 //export const ToServe = new Mongo.Collection('toServe');
 
 //search.js contains methods to match a user with his list of spaces
