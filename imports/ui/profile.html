@@ -26,28 +26,50 @@
 <div class="container">
   <div class="starter-template">
     <h1 id="title">Profile</h1>
-    <div class="row profpic">
-  		<picture>
-  			<img src="https://scontent-sin1-1.xx.fbcdn.net/hphotos-frc1/v/t1.0-9/10385485_10152530849760777_8100744360037756202_n.jpg?oh=762399f7432c2d00818d4b637f19afa6&oe=57B8AB1C" alt="..." class="img-circle img-responsive center-block">
-	    </picture>
-    </div>
     <div>
-      <p><h2>hours left</h2>{{>balance}}</p>
-      <p><h2>next recharge</h2></p>
+
+
+        
+    {{#if currentUser}}
+      <button class="btn btn-default logout">Logout</button>
+    {{else}}
+        {{> atForm}}
+    {{/if}}
+
+
+
+      <p><h2>Searches made: <span class="badge">14</span></h2></p>
+      <p><h2>your most visited place is</h2></p>
     </div>
-    <div>
-      <p><h3><a href="#">View Subscription</a></h3></p>
-      <p><h3><a href="./">Book New Space</a></h3></p>
-      <p><h3><a href="./itinerary">View Itinerary</a></h3></p>
-      <p><h3><a href="#">View History</a></h3></p>
-      <p><h3><a href="#">Edit Profile</a></h3></p>
-      <p><a href="/signin">Sign out</a></p>
+    <div id='profileSettings'>
+      <h4>Select your minimum accepted Wifi speed</h4>
+      <div class="btn-group wifiOptions" data-toggle="buttons">
+        <label class="btn btn-primary active">
+          <input type="radio" name="options" id="wifi0" value=0 autocomplete="off" checked> No Wifi
+        </label>
+        <label class="btn btn-primary">
+          <input type="radio" name="options" id="wifi1" value=1 autocomplete="off"> Basic
+        </label>
+        <label class="btn btn-primary">
+          <input type="radio" name="options" id="wifi2" value=2 autocomplete="off"> Good
+        </label>
+        <label class="btn btn-primary">
+          <input type="radio" name="options" id="wifi3" value=3 autocomplete="off"> Excellent
+        </label>
+      </div>
+
+      <h4>Select minimum available power plugs</h4>
+      <div class="btn-group" role="group" aria-label="...">
+        <button type="button" class="btn btn-default active">0</button>
+        <button type="button" class="btn btn-default">2</button>
+        <button type="button" class="btn btn-default">4</button>
+        <button type="button" class="btn btn-default">6</button>
+        <button type="button" class="btn btn-default">8</button>
+        <button type="button" class="btn btn-default">10</button>
+      </div>
+      <h4>To enable us to serve you better options, please answer a few questions</h4>
     </div>
     
   </div>
 </div><!-- /.container -->
-</template>
-
-<template name="balance">
-  {{timeleft}}
 </template>

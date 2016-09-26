@@ -1,7 +1,13 @@
 <template name="manager">
 	<h2>Manager</h2>
 	<div class="container-fluid">
-	{{> loginButtons}}
+	<!-- {{> loginButtons}} -->
+	{{#if currentUser}}
+      <button class="btn btn-default logout">Logout</button>
+    {{else}}
+        {{> atForm}}
+    {{/if}}
+    
 	{{#if admincheck}}
 		<form class="new-space">
 			<select name="category">
@@ -28,15 +34,22 @@
         	<span id="score"></span>
         	<span id="hits"></span>
     	</form>
+    	{{>test}}
+
 		{{#each spacelists}}
 			{{>spacelist}}
 		{{/each}}
 		{{#each collectedEmails}}
 			{{>collectedEmail}}
 		{{/each}}
-		{{/if}}
+	{{/if}}
     </div>
 </template>
+<template name="test">
+	
+<p> heelo </p>
+</template>
+
 <template name="spacelist">
 	<div class="row">
 		<div class="col-xs-1"><button class="edit">edit</button></div>

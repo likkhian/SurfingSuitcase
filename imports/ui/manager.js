@@ -1,5 +1,5 @@
 import { Template } from 'meteor/templating';
-import {Spaces} from '../api/spaces.js';
+import { Spaces } from '../api/spaces.js';
 import { Meteor } from 'meteor/meteor';
 import './manager.html';
 import { Emails } from '../api/email.js';
@@ -93,22 +93,44 @@ Template.manager.events({
 	    Session.set('hits',hits);
 	},
 	
+	'click .logout': ()=> {
+		Meteor.logout();
+	},
+	
 })
 
 Template.manager.helpers({
   	spacelists: function() {
-  		//console.log(Meteor.user().username);
-		return Spaces.find({}); //this is still not using methods.
+  // 		console.log(Meteor.user().username);
+		// var spaces = Meteor.call('spaces.listAll');
+		// console.log(spaces);
+		// return spaces;
+
+
 		//return Meteor.call('query.list')
+
+		// return Meteor.call('spaces.listAll', function(err, spaces) {
+		// 	console.log(err);
+		// 	console.log(spaces);
+		// 	return spaces;
+		// 
+
+		return Session.get('spacelist');
 	},
 	//only admin can edit
-	admincheck:function(){
+	admincheck: function(){
 		console.log(Meteor.userId());
-		console.log(Meteor.user().profile);
-		console.log(Meteor.users);
+		console.log(Meteor.user().username);
 		return Meteor.user().username==="SSadmin";
 	},
 	collectedEmails: function() {
 		return Emails.find({})
 	},
+
 });
+
+Template.manager.created = function () {
+	Meteor.call('spaces.listAll', function(err, spaces) {
+		Session.set('spacelist', spaces);
+	});
+}

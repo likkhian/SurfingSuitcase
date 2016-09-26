@@ -130,7 +130,11 @@ Meteor.methods({
     check(queryID, String);
  
     Spaces.remove(queryID);
-  }
+  },
+
+  'spaces.listAll'() {
+    return Spaces.find({}).fetch();
+  },
 
 });
 

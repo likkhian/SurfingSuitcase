@@ -66,6 +66,14 @@ Template.surf.events({
         } else {
             performSearch(location.lat, location.lng);
         }
+    },
+
+    'click .login-toggle': ()=> {
+        $('#firstCallToSignup').modal('show');
+    },
+
+    'click .logout': ()=> {
+        Meteor.logout();
     }
 });
 

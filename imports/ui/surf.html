@@ -17,6 +17,11 @@
         <li class="active"><a href="/">Surf</a></li>
         <li><a href="http://www.facebook.com/surfingsuitcase/">Facebook</a></li>
         <li><a href="./aboutus">About us</a></li>
+        {{#if currentUser}}
+        <li><a class="logout">Sign-out</a></li>
+        {{else}}
+        <li><a class="login-toggle">Login/Sign-up</a></li>
+        {{/if}}
       </ul>
     </div><!--/.nav-collapse -->
   </div>
@@ -32,7 +37,7 @@
 
   <div class="container-fluid container-limiter">
     <span>
-      <div id="loginator">{{#if currentUser}}Hello, {{/if}} {{currentUser.username}}</div>
+      <div id="loginator">{{#if currentUser}}Hello, {{currentUser.profile.name}} {{/if}}</div>
     </span>
 
     <form class="form-horizontal" id="new-search"> 
@@ -68,7 +73,7 @@
        <p>Please ensure that location services are <a data-toggle="modal" data-target="#myModal" href="#">enabled</a>.</p>
 
         <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal modal-fullscreen fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -100,15 +105,19 @@
       </div>
       <div class="modal-body">
         <p>Please tap on 'Sign in' to create an account and access future perks and discounts! It only takes a couple seconds and your privacy will be protected.
-        <br>{{> loginButtons }}</p>
+        <!-- <br>{{> loginButtons }} -->
+        {{> atForm}}
+        </p>
       </div>
       <div class="modal-footer">
-        
+        {{#if currentUser}}
+        <button type="button" class="btn btn-success btn-lg btn-block" data-dismiss="modal">Continue</button>
+        {{/if}}
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
-  {{loginPrompt}}
+  {{atForm}}
 
 
  <div class="modal fade" id="modal-enable-location" role="dialog">
