@@ -12,11 +12,11 @@ Meteor.startup(function () {
         libraries: 'places, geometry'  // also accepts an array if you need more than one
     });
 
-//meteor force https
-  // if (location.protocol.toLowerCase() === 'http:') {
-  //       window.location.href = 'https://www.surfingsuitcase.com';
-  //       console.log(location.protocol);
-  // };
+meteor force https
+  if (location.protocol.toLowerCase() === 'http:') {
+        window.location.href = 'https://www.surfingsuitcase.com';
+        console.log(location.protocol);
+  };
 });
 
 Template.surf.onRendered(function () {
