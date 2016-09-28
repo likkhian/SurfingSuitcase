@@ -3,6 +3,7 @@ import { Spaces } from '../api/spaces.js';
 import { Meteor } from 'meteor/meteor';
 import './manager.html';
 import { Emails } from '../api/email.js';
+import { Session } from 'meteor/session';
 
 Template.manager.events({
 	'submit .new-space'(event){
@@ -24,21 +25,6 @@ Template.manager.events({
 		var votes = Session.get('entryScore');
 		var hits = Session.get('hits');
 		//console.log(entry2Update);
-
-		// Insert a task into the collection
-	    // Query.insert({
-	    //   spaceCat,
-	    //   text,
-	    //   address,
-	    //   spaceLat,
-	    //   spaceLon,
-	    //   spaceCid,
-	    //   picture,
-	    //   spaceWifi,
-	    //   spacePp,
-	    //   spaceDp,
-	    //   createdAt: new Date(), // current time
-	    // });
 	    //make api call
 	    Meteor.call('spaces.upsert',entry2Update,spaceCat,text,address,spaceLat,spaceLon,picture,spaceCid,spaceWifi,spacePp,spaceDp,votes,hits)
 
@@ -65,12 +51,19 @@ Template.manager.events({
 	'click .edit'(){
 		//make edit
 		const entry2Insert=this._id
-		const entryCurser = Spaces.find(this._id)
-		const entry = entryCurser.fetch()
-		console.log(entry[0])
-		const trgt=document.getElementsByClassName("new-space")
-		console.log(trgt[0])
+		console.log(entry2Insert)
+		//const entryCurser = Spaces.find(this._id)
+		//const entry = entryCurser.fetch()
+		Meteor.call('spaces.find',entry2Insert,function(err,entry){
+			console.log(entry[0]._id)
+			Session.set('entry',entry)
+		})
+		var entry = Session.get('entry');
+		//console.log(entry);
+		const trgt=document.getElementsByClassName("new-space");
+		//console.log(trgt[0]);
 		//fill form
+		console.log(entry[0]._id)
 		trgt[0][0].value=entry[0].spaceCat;
 	    trgt[0].spaceName.value=entry[0].text;
 	    trgt[0].address.value=entry[0].address;
@@ -84,7 +77,7 @@ Template.manager.events({
 	    var myId = entry[0]._id;
 	    var score = entry[0].votes;
 	    var hits = entry[0].hits;
-	    console.log(document.getElementById("activeId"))
+	    //console.log(document.getElementById("activeId"))
     	document.getElementById("activeId").innerHTML = myId;
     	document.getElementById("score").innerHTML = score;
     	document.getElementById("hits").innerHTML = hits;
@@ -101,20 +94,6 @@ Template.manager.events({
 
 Template.manager.helpers({
   	spacelists: function() {
-  // 		console.log(Meteor.user().username);
-		// var spaces = Meteor.call('spaces.listAll');
-		// console.log(spaces);
-		// return spaces;
-
-
-		//return Meteor.call('query.list')
-
-		// return Meteor.call('spaces.listAll', function(err, spaces) {
-		// 	console.log(err);
-		// 	console.log(spaces);
-		// 	return spaces;
-		// 
-
 		return Session.get('spacelist');
 	},
 	//only admin can edit

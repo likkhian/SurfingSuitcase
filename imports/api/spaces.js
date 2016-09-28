@@ -136,6 +136,10 @@ Meteor.methods({
     return Spaces.find({}).fetch();
   },
 
+  'spaces.find'(entry2Insert) {
+    return Spaces.find(entry2Insert).fetch();
+  },
+
 });
 
 function distCalc(locationLat, locationLng, spaceLat, spaceLng) {
