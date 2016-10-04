@@ -37,7 +37,7 @@
 
   <div class="container-fluid container-limiter">
     <span>
-      <div id="loginator">{{#if currentUser}}Hello, {{currentUser.profile.name}} {{/if}}</div>
+      <div id="loginator">{{#if currentUser}}Hello, {{#if currentUser.username}} {{currentUser.username}} {{else}} {{currentUser.profile.name}} {{/if}} {{/if}} </div>
     </span>
 
     <form class="form-horizontal" id="new-search"> 
@@ -104,10 +104,12 @@
         <h4 class="modal-title">Create an account!</h4>
       </div>
       <div class="modal-body">
-        <p>Please tap on 'Sign in' to create an account and access future perks and discounts! It only takes a couple seconds and your privacy will be protected.
-        <!-- <br>{{> loginButtons }} -->
+        {{#if currentUser}}
+        <p>Please tap the 'Continue' button to start</p>
+        {{else}}
+        <p>Please sign-in with google or create an account. It only takes a couple of seconds and you will get access cool deals and great workspaces!</p>
+        {{/if}}
         {{> atForm}}
-        </p>
       </div>
       <div class="modal-footer">
         {{#if currentUser}}
