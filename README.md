@@ -7,3 +7,5 @@ There is a piece of code in imports>ui>surf.js that forces a https connection. P
 so your changes will display correctly on your localhost:3000. When committing changes, remember to unstage that hunk too, so people will get directed
 to the app with secure origins!
 
+Know issues: in the /manager area, you'll have to click 'edit' twice to populate the data fields. When you are done editing and click 'submit', the changes do not show up immediately but require a refresh. WARNING. if you only click edit once, and click edit on another entry, the entry that is populated will not be the correct entry. I suspect it is because a meteor publish and subscribe is not implemented yet, so the data does not 'live update'
+
