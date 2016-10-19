@@ -103,3 +103,8 @@ select{
 .info-btn{
 	padding-top: 10px;
 }
+
+.emailEntryComing{
+	padding-right: 10%;
+	padding-left: 10%;
+}
