@@ -3,6 +3,9 @@
 body{
 	padding-top: 50px;
 	padding-bottom: 20px;
+	background-image: url("bkg-7.jpg");
+	background-size: 100%;
+	background-position: center;
 }
 
 form{
@@ -107,4 +110,9 @@ select{
 .emailEntryComing{
 	padding-right: 10%;
 	padding-left: 10%;
+}
+
+a.result-link{
+	color:	#333;
+	text-decoration: underline;
 }
