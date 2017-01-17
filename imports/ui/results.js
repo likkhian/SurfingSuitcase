@@ -23,12 +23,12 @@ Template.results.onCreated(function () {
     });
 });
 
-Template.results.onRendered(function () {
-    if (!Meteor.userId()) {
-        //invite people to sign up if they have not
-        $('#callToSignup').modal()
-    };
-});
+// Template.results.onRendered(function () {
+//     if (!Meteor.userId()) {
+//         //invite people to sign up if they have not
+//         $('#callToSignup').modal()
+//     };
+// });
 
 Template.results.helpers({
     SSreturns() {
@@ -48,8 +48,13 @@ Template.SSreturn.onCreated(function () {
 
 Template.SSreturn.events({
   'click .redeem': function(){
-    $('.placeInfo').modal('hide')
-    //hide triggers hidden.bs.modal event which triggers the router.
-    .on('hidden.bs.modal', function (e) {Router.go('/comingsoon')})
+    if(!Meteor.userId()){
+        console.log("dingding")
+        $('#callToSignup').modal()
+    } else {
+        $('.placeInfo').modal('hide')
+        //hide triggers hidden.bs.modal event which triggers the router.
+        .on('hidden.bs.modal', function (e) {Router.go('/comingsoon')})
+    }
   },
 });
