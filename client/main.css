@@ -116,3 +116,7 @@ a.result-link{
 	color:	#333;
 	text-decoration: underline;
 }
+
+.navbar-inner{
+    background:#022c49;
+}
