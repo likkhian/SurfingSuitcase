@@ -42,7 +42,10 @@ Template.manager.events({
 	    Session.set('hits','');
 	    document.getElementById("activeId").innerHTML = '';
 	    document.getElementById("score").innerHTML = '';
-	    document.getElementById("hits").innerHTML = '';
+	    document.getElementById("hits").innerHTML = '';	
+	    Meteor.call('spaces.listAll', function(err, spaces) {
+		Session.set('spacelist', spaces);
+	});
 	},
 	'click .delete'(){
 		//Query.remove(this._id);
@@ -51,39 +54,39 @@ Template.manager.events({
 	'click .edit'(){
 		//make edit
 		const entry2Insert=this._id
-		console.log(entry2Insert)
+		//console.log(entry2Insert)
 		//const entryCurser = Spaces.find(this._id)
 		//const entry = entryCurser.fetch()
 		Meteor.call('spaces.find',entry2Insert,function(err,entry){
 			console.log(entry[0]._id)
-			Session.set('entry',entry)
+			//Session.set('entry',entry)
+			//var entry = Session.get('entry');
+			console.log(entry);
+			const trgt=document.getElementsByClassName("new-space");
+			//console.log(trgt[0]);
+			//fill form
+			console.log(entry[0]._id)
+			trgt[0][0].value=entry[0].spaceCat;
+		    trgt[0].spaceName.value=entry[0].text;
+		    trgt[0].address.value=entry[0].address;
+		    trgt[0].lattitude.value=entry[0].spaceLat;
+		    trgt[0].longitude.value=entry[0].spaceLon;
+		    trgt[0].link2pic.value=entry[0].picture;
+		    trgt[0].cidLink.value=entry[0].spaceCid;
+		    trgt[0][7].value=entry[0].spaceWifi;
+		    trgt[0].powerPoint.value=entry[0].spacePp;
+		    trgt[0].drinkPrice.value=entry[0].spaceDp;
+		    var myId = entry[0]._id;
+		    var score = entry[0].votes;
+		    var hits = entry[0].hits;
+		    //console.log(document.getElementById("activeId"))
+	    	document.getElementById("activeId").innerHTML = myId;
+	    	document.getElementById("score").innerHTML = score;
+	    	document.getElementById("hits").innerHTML = hits;
+	    	Session.set('entryScore',score);
+		    Session.set('entry2Insert',entry2Insert);
+		    Session.set('hits',hits);
 		})
-		var entry = Session.get('entry');
-		//console.log(entry);
-		const trgt=document.getElementsByClassName("new-space");
-		//console.log(trgt[0]);
-		//fill form
-		console.log(entry[0]._id)
-		trgt[0][0].value=entry[0].spaceCat;
-	    trgt[0].spaceName.value=entry[0].text;
-	    trgt[0].address.value=entry[0].address;
-	    trgt[0].lattitude.value=entry[0].spaceLat;
-	    trgt[0].longitude.value=entry[0].spaceLon;
-	    trgt[0].link2pic.value=entry[0].picture;
-	    trgt[0].cidLink.value=entry[0].spaceCid;
-	    trgt[0][7].value=entry[0].spaceWifi;
-	    trgt[0].powerPoint.value=entry[0].spacePp;
-	    trgt[0].drinkPrice.value=entry[0].spaceDp;
-	    var myId = entry[0]._id;
-	    var score = entry[0].votes;
-	    var hits = entry[0].hits;
-	    //console.log(document.getElementById("activeId"))
-    	document.getElementById("activeId").innerHTML = myId;
-    	document.getElementById("score").innerHTML = score;
-    	document.getElementById("hits").innerHTML = hits;
-    	Session.set('entryScore',score);
-	    Session.set('entry2Insert',entry2Insert);
-	    Session.set('hits',hits);
 	},
 	
 	'click .logout': ()=> {
