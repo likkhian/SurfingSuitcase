@@ -50,6 +50,8 @@ Template.manager.events({
 	'click .delete'(){
 		//Query.remove(this._id);
 		Meteor.call('spaces.remove',this._id);
+	    Meteor.call('spaces.listAll', function(err, spaces) {
+		Session.set('spacelist', spaces);
 	},
 	'click .edit'(){
 		//make edit
