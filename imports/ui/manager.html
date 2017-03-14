@@ -66,5 +66,12 @@
 	</div>
 </template>
 <template name="collectedEmail">
-	<div><p>{{emailAdd}} {{createdAt}}</p></div>
+	<div>
+	<p> {{createdAt}} </p>
+	{{#if services.google}} 
+		<p> GOOGLE {{services.google.email}} {{services.google.name}} </p>
+	{{else}} 
+		<p> OTHERS {{username}} {{emails.[0].address}} </p>
+	{{/if}} 
+	</div>
 </template>

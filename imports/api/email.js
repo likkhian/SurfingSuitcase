@@ -11,4 +11,8 @@ Meteor.methods({
 			createdAt: new Date(),
 		});
 	},
+  'emails.listAll'() {
+  	return Meteor.users.find({}).fetch();
+    //return Emails.find({}).fetch();
+  },
 });

@@ -109,7 +109,7 @@ Template.manager.helpers({
 		return Meteor.user().username==="SSadmin";
 	},
 	collectedEmails: function() {
-		return Emails.find({})
+		return Session.get('collectedEmail')
 	},
 
 });
@@ -117,5 +117,9 @@ Template.manager.helpers({
 Template.manager.created = function () {
 	Meteor.call('spaces.listAll', function(err, spaces) {
 		Session.set('spacelist', spaces);
+	});
+
+	Meteor.call('emails.listAll',function(err, emails) {
+		Session.set('collectedEmail',emails);
 	});
 }
