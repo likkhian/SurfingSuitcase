@@ -37,13 +37,13 @@
 
   <div class="container-fluid container-limiter">
     <span>
-      <div id="loginator">{{#if currentUser}}Hello, {{#if currentUser.username}} {{currentUser.username}} {{else}} {{currentUser.profile.name}} {{/if}} {{/if}} </div>
+      <div id="loginator" class="search-zones">{{#if currentUser}}Hello, {{#if currentUser.username}} {{currentUser.username}} {{else}} {{currentUser.profile.name}} {{/if}} {{/if}} </div>
     </span>
 
-    <form class="form-horizontal" id="new-search"> 
+    <form class="form-horizontal search-zones" id="new-search"> 
       <div class="form-group">
-        <label for="desire" class="col-xs-4" id="hypeman">I want to</label> 
-        <div class="input-group col-xs-8">
+        <label for="desire" id="hypeman">I want to</label> 
+        <div class="input-group">
         	<span class="input-group-addon">
         		<span class="glyphicon glyphicon-sunglasses"></span>
         	</span>
@@ -56,9 +56,9 @@
       </div>
       
       
-      <div class="form-group">
-          <label for="locationpick" class="col-xs-4" id="hypeman">Near</label>
-          <div class="col-xs-8 input-group">
+      <div class="form-group search-zones">
+          <label for="locationpick" id="hypeman">Near</label>
+          <div class="input-group">
             <span class="input-group-addon">
                 <i class="fa fa-location-arrow" aria-hidden="true"></i>
             </span>

@@ -65,7 +65,8 @@ select{
 }
 
 #hypeman{
-	font-size: large;
+	font-size: small;
+	text-align: center;
 }
 
 .fa-location-arrow{
@@ -101,6 +102,8 @@ select{
 
 #loginator{
 	padding-bottom: 10px;
+	font-size: medium;
+	text-align: center;
 }
 
 .info-btn{
@@ -119,4 +122,9 @@ a.result-link{
 
 .navbar-inner{
     background:#022c49;
+}
+
+.search-zones{
+	margin-left: 10%;
+	margin-right: 10%;
 }
