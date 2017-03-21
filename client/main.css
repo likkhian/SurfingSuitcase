@@ -128,3 +128,7 @@ a.result-link{
 	margin-left: 10%;
 	margin-right: 10%;
 }
+
+#app-description{
+	text-align: justify;
+}
