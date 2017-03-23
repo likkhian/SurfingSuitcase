@@ -1,10 +1,10 @@
 /* CSS declarations go here */
 
 body{
-	padding-top: 50px;
+	/*padding-top: 50px;*/
 	padding-bottom: 20px;
 	background-image: url("bkg-7.jpg");
-	background-size: 100%;
+	background-size: cover;
 	background-position: center;
 }
 
@@ -61,7 +61,7 @@ select{
 }
 
 .container-limiter {
-	max-width: 500px;
+	max-width: 800px;
 }
 
 #hypeman{
@@ -120,10 +120,6 @@ a.result-link{
 	text-decoration: underline;
 }
 
-.navbar-inner{
-    background:#022c49;
-}
-
 .search-zones{
 	margin-left: 10%;
 	margin-right: 10%;
@@ -131,4 +127,37 @@ a.result-link{
 
 #app-description{
 	text-align: justify;
+}
+
+.navbar{
+	background: none;
+	border: none;
+	/*border-bottom: solid rgba(255, 255, 255, .2);*/
+	margin-bottom: 0px;
+}
+
+.navbar-brand#brandtxt{
+/*	float: none;
+	text-align: center;
+    display: block;*/
+    color: white;
+}
+
+a.burger-inactive{
+	color: white;
+}
+
+#headtitle{
+	margin-top: 10px;
+}
+
+#landing-bg{
+	background-image: url("kaufe.jpg");
+	background-size: cover;
+	background-position: right;
+	color: white;
+}
+
+.container-fluid.fluid-control{
+	padding: 0px;
 }
