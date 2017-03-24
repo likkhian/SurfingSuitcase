@@ -6,6 +6,7 @@ import '../../ui/signin.js';
 import '../../ui/results.js';
 import '../../ui/manager.js';
 import '../../ui/comingsoon.js';
+import '../../ui/privacy.js';
 
 
 Router.route('/', {
@@ -17,6 +18,7 @@ Router.route('/aboutus');
 Router.route('/signin');
 Router.route('/manager');
 Router.route('/comingsoon');
+Router.route('/privacy');
 Router.route('/results/:selection', {
 	name: 'search.results',
 	path: '/results/:selection',
