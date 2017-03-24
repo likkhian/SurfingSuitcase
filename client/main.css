@@ -2,9 +2,10 @@
 
 body{
 	padding-bottom: 20px;
-	background-image: url("bkg-7-01.jpeg");
-	background-size: cover;
-	background-position: center;
+	background: lavender;
+	/*background-image: url("bkg-7-01.jpeg");*/
+	/*background-size: cover;*/
+	/*background-position: center;*/
 }
 
 form{
