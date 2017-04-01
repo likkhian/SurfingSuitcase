@@ -3,8 +3,7 @@ import '../imports/api/spaces.js'
 import '../imports/api/email.js'
 import { Email } from 'meteor/email'
 // Meteor.startup(() => {
-//   // code to run on server at startup
-//   
+//  // code to run on server at startup  
 // });
 // Meteor.startup( function() {
 //   process.env.MAIL_URL = "smtp://hello%40surfingsuitcase.com:DXL@work123@box1244.bluehost.com:465";
@@ -28,6 +27,7 @@ Meteor.methods({
     });
   }
 });
+
 // Email.send({
 // 	to:"hello@surfingsuitcase.com",
 // 	from:"lik@surfingsuitcase.com",
